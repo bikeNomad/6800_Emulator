@@ -48,7 +48,7 @@
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MKE18F512xxx16_Project/source/emulator}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.include.files.513525012" name="Include files (-include)" superClass="gnu.cpp.compiler.option.include.files" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.cpp.exe.debug.option.optimization.level.807882232" name="Optimization Level" superClass="com.crt.advproject.cpp.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.more" valueType="enumerated"/>
@@ -107,7 +107,7 @@
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MKE18F512xxx16_Project/source/emulator}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.files.2006835944" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.gcc.exe.debug.option.optimization.level.351583777" name="Optimization Level" superClass="com.crt.advproject.gcc.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.more" valueType="enumerated"/>
@@ -151,7 +151,7 @@
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MKE18F512xxx16_Project/source/emulator}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/arm-none-eabi"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/backward"/>
@@ -202,7 +202,7 @@
 								<option id="com.crt.advproject.link.cpp.lto.optmization.level.1394885286" name="Link-time optimization level" superClass="com.crt.advproject.link.cpp.lto.optmization.level" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.link.cpp.fpu.757779651" name="Floating point" superClass="com.crt.advproject.link.cpp.fpu" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.link.cpp.manage.1576218418" name="Manage linker script" superClass="com.crt.advproject.link.cpp.manage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.cpp.script.155029760" name="Linker script" superClass="com.crt.advproject.link.cpp.script" useByScannerDiscovery="false" value="MKE18F512xxx16_Project_Debug.ld" valueType="string"/>
+								<option id="com.crt.advproject.link.cpp.script.155029760" name="Linker script" superClass="com.crt.advproject.link.cpp.script" useByScannerDiscovery="false" value="&quot;6800_emulator_Debug.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.cpp.scriptdir.622357874" name="Script path" superClass="com.crt.advproject.link.cpp.scriptdir" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.link.cpp.crpenable.142967981" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.cpp.crpenable" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.link.cpp.flashconfigenable.90629581" name="Enable automatic placement of Flash Configuration field in image" superClass="com.crt.advproject.link.cpp.flashconfigenable" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -331,7 +331,7 @@
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MKE18F512xxx16_Project/source/emulator}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/arm-none-eabi"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/backward"/>
@@ -363,6 +363,8 @@
 								<option id="com.crt.advproject.cpp.hdrlib.1131323533" name="Library headers" superClass="com.crt.advproject.cpp.hdrlib"/>
 								<option id="com.crt.advproject.cpp.config.1452536058" name="Obsolete (Config)" superClass="com.crt.advproject.cpp.config"/>
 								<option id="com.crt.advproject.cpp.store.369042740" name="Obsolete (Store)" superClass="com.crt.advproject.cpp.store"/>
+								<option id="com.crt.advproject.cpp.exe.release.option.optimization.level.978196505" superClass="com.crt.advproject.cpp.exe.release.option.optimization.level"/>
+								<option id="com.crt.advproject.cpp.exe.release.option.debugging.level.615379147" superClass="com.crt.advproject.cpp.exe.release.option.debugging.level"/>
 								<inputType id="com.crt.advproject.compiler.cpp.input.1751369758" superClass="com.crt.advproject.compiler.cpp.input"/>
 							</tool>
 							<tool id="com.crt.advproject.gcc.exe.release.996412247" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
@@ -394,7 +396,7 @@
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MKE18F512xxx16_Project/source/emulator}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/arm-none-eabi"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/backward"/>
@@ -426,6 +428,8 @@
 								<option id="com.crt.advproject.gcc.thumbinterwork.700062180" name="Enable Thumb interworking" superClass="com.crt.advproject.gcc.thumbinterwork"/>
 								<option id="com.crt.advproject.gcc.config.739283013" name="Obsolete (Config)" superClass="com.crt.advproject.gcc.config"/>
 								<option id="com.crt.advproject.gcc.store.1265858968" name="Obsolete (Store)" superClass="com.crt.advproject.gcc.store"/>
+								<option id="com.crt.advproject.gcc.exe.release.option.optimization.level.1412212648" superClass="com.crt.advproject.gcc.exe.release.option.optimization.level"/>
+								<option id="com.crt.advproject.gcc.exe.release.option.debugging.level.1586393143" superClass="com.crt.advproject.gcc.exe.release.option.debugging.level"/>
 								<inputType id="com.crt.advproject.compiler.input.834525291" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
 							<tool id="com.crt.advproject.gas.exe.release.2081311259" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
@@ -442,7 +446,7 @@
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MKE18F512xxx16_Project/source/emulator}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/arm-none-eabi"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/backward"/>
@@ -456,6 +460,7 @@
 								<option id="com.crt.advproject.gas.thumbinterwork.1963134897" name="Enable Thumb interworking" superClass="com.crt.advproject.gas.thumbinterwork"/>
 								<option id="com.crt.advproject.gas.config.38956547" name="Obsolete (Config)" superClass="com.crt.advproject.gas.config"/>
 								<option id="com.crt.advproject.gas.store.600904087" name="Obsolete (Store)" superClass="com.crt.advproject.gas.store"/>
+								<option id="com.crt.advproject.gas.debug.194845747" superClass="com.crt.advproject.gas.debug"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1337368365" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 								<inputType id="com.crt.advproject.assembler.input.267533416" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
 							</tool>
@@ -492,7 +497,7 @@
 								<option id="com.crt.advproject.link.cpp.lto.optmization.level.920630751" name="Link-time optimization level" superClass="com.crt.advproject.link.cpp.lto.optmization.level"/>
 								<option id="com.crt.advproject.link.cpp.fpu.954434270" name="Floating point" superClass="com.crt.advproject.link.cpp.fpu"/>
 								<option id="com.crt.advproject.link.cpp.manage.2139623258" name="Manage linker script" superClass="com.crt.advproject.link.cpp.manage" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.cpp.script.753831038" name="Linker script" superClass="com.crt.advproject.link.cpp.script" value="MKE18F512xxx16_Project_Release.ld" valueType="string"/>
+								<option id="com.crt.advproject.link.cpp.script.753831038" name="Linker script" superClass="com.crt.advproject.link.cpp.script" value="&quot;6800_emulator_Release.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.cpp.scriptdir.1438988695" name="Script path" superClass="com.crt.advproject.link.cpp.scriptdir"/>
 								<option id="com.crt.advproject.link.cpp.crpenable.1821826967" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.cpp.crpenable"/>
 								<option id="com.crt.advproject.link.cpp.flashconfigenable.535978731" name="Enable automatic placement of Flash Configuration field in image" superClass="com.crt.advproject.link.cpp.flashconfigenable" value="true" valueType="boolean"/>
