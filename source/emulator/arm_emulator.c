@@ -11,6 +11,7 @@
 uint32_t led_states;
 
 static uint8_t RAM[256];
+static uint8_t ROM[48*1024];
 
 MemoryRange memoryRanges[] = {
 	// base             end					intAddr ext pia writable

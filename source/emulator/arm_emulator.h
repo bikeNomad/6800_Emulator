@@ -57,25 +57,31 @@
 #define A15_MASK 0x8000
 
 enum {
-	RAM_BASE      = 0x0000,	// IC13/IC16 2114 RAM 256 bytes (aliased at 0200-03FF, 1100-11FF)
+	// always external: 0x2000..0x3fff
+	PIA_BASE = 0x2000,
+	PIA_5_BASE = 0x2100,// IC36 (2100-2103) (sound, comma, interface) !A14|A13|A8
+	PIA_4_BASE = 0x2200,	// (IC5 on driver board) (solenoids)
+	PIA_3_BASE = 0x2400,	// (IC10 on driver board) (lamps)
+	PIA_1_BASE = 0x2800,// IC18 (2800-2803) (displays, DIP switches) !A14|A13|A11
+	PIA_7_BASE = 0x2C00,	// system 11B CPU.U41
+	PIA_2_BASE = 0x3000,	// (IC11 on driver board) (switches)
+	PIA_8_BASE = 0x3400,   // system 11B CPU.U42
+	PIA_END = PIA_8_BASE + 3,
+#ifdef SYSTEM_11
+	RAM_BASE = 0x0000,
+	ROM_BASE = 0x4000,
+	ROM_SIZE = 0xC000,	// 48K ROM
+#else // SYSTEM 3 (BK)
+	RAM_BASE = 0x0000,// IC13/IC16 2114 RAM 256 bytes (aliased at 0200-03FF, 1100-11FF)
 	CMOS_RAM_BASE = 0x0100,	// IC19 5101 CMOS RAM 256 bytes
 
-	// always external: 0x2000..0x3fff
-	PIA_BASE   =  0x2000,
-	PIA_5_BASE 	= 0x2100,	// IC36 (2100-2103) (sound, comma, interface) !A14|A13|A8
-	PIA_4_BASE 	= 0x2200,	// (IC5 on driver board) (solenoids)
-	PIA_3_BASE 	= 0x2400,	// (IC10 on driver board) (lamps)
-	PIA_1_BASE 	= 0x2800,	// IC18 (2800-2803) (displays, DIP switches) !A14|A13|A11
-	PIA_7_BASE  = 0x2C00,	// system 11B CPU.U41
-	PIA_2_BASE 	= 0x3000,	// (IC11 on driver board) (switches)
-	PIA_8_BASE  = 0x3400,   // system 11B CPU.U42
-	PIA_END     = PIA_8_BASE + 3,
-
-	ROM_BASE      = 0x5000 | A15_MASK,  // entire ROM region (12K) (0xD000-0xFFFF)
+	ROM_SIZE = 0x3000,
+	ROM_BASE = 0x5000 | A15_MASK,  // entire ROM region (12K) (0xD000-0xFFFF)
 	ROM_5800_BASE = 0x5800 | A15_MASK,	// IC26 2316 game ROM 2K (D800-DFFF)
-	ROM_6000_BASE = 0x6000 | A15_MASK,	// IC14 2316 game ROM 2K (or IC21/22?) (E000-E7FF)
+	ROM_6000_BASE = 0x6000 | A15_MASK,// IC14 2316 game ROM 2K (or IC21/22?) (E000-E7FF)
 	ROM_6800_BASE = 0x6800 | A15_MASK,	// IC20 2316 system ROM 2K (E800-EFFF)
 	ROM_7000_BASE = 0x7000 | A15_MASK,	// IC17 2332 system ROM 4K (F000-FFFF)
+#endif
 };
 
 typedef struct MemoryRange {
@@ -86,6 +92,13 @@ typedef struct MemoryRange {
 	uint8_t isPIA: 1;
 	uint8_t isWritable: 1;
 } MemoryRange;
+
+typedef struct RomRange {
+	uint16_t baseAddress;
+	uint16_t size;
+	uint32_t expectedCrc;
+	uint32_t actualCrc;
+} RomRange;
 
 enum {
 	MR_INTERNAL = 0,
@@ -110,6 +123,8 @@ INLINE void clearExtOut7() {
 }
 
 extern uint32_t led_states;	// TODO(nk): write LED on/off/toggle/pulse code
+
+extern RomRange romRanges[];
 
 extern MemoryRange memoryRanges[];
 
