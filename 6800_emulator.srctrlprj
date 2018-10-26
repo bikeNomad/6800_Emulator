@@ -9,6 +9,10 @@
                 <compiler_flag>-DHAS_M6808</compiler_flag>
                 <compiler_flag>-DHAS_M6800</compiler_flag>
                 <compiler_flag>-DSYSTEM_11=1</compiler_flag>
+                <compiler_flag>--target=armv7em-none-eabi</compiler_flag>
+                <compiler_flag>-mcpu=cortex-m4</compiler_flag>
+                <compiler_flag>-isysroot /opt/gcc-arm-none-eabi-7-2017-q4-major/lib/gcc/arm-none-eabi</compiler_flag>
+                <compiler_flag>-iprefix /opt/gcc-arm-none-eabi-7-2017-q4-major/lib/gcc/arm-none-eabi/7.2.1/</compiler_flag>
             </compiler_flags>
             <indexed_header_paths>
                 <indexed_header_path>./</indexed_header_path>
