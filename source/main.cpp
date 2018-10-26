@@ -93,10 +93,15 @@ int main(void) {
     PRINTF("Pinball ROM CRC check\r\n");
 
     while (1) {
+#ifdef SYSTEM_11
+    	PrintCrc32(ROM_2_BASE, ROM_2_SIZE);
+    	PrintCrc32(ROM_1_BASE, ROM_1_SIZE);
+#else
     	PrintCrc32(ROM_5800_BASE, 0x0800);
     	PrintCrc32(ROM_6000_BASE, 0x0800);
     	PrintCrc32(ROM_6800_BASE, 0x0800);
     	PrintCrc32(ROM_7000_BASE, 0x1000);
+#endif
     }
 }
 

@@ -13,12 +13,6 @@
 #endif
 
 #include "osd_cpu.h"
-// #include "memory.h"
-// #include "timer.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 
 /*************************************
@@ -132,20 +126,6 @@ enum
 	REG_SP_CONTENTS = -4
 };
 
-
-/* endianness constants */
-enum
-{
-	CPU_IS_LE = 0,				/* emulated CPU is little endian */
-	CPU_IS_BE					/* emulated CPU is big endian */
-};
-
-
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif	/* CPUINTRF_H */
 

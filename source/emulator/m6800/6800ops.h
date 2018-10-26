@@ -226,8 +226,7 @@ INLINE void bra( void )
 /* $21 BRN relative ----- */
 INLINE void brn( void )
 {
-	UINT8 t;
-	IMMBYTE(t);
+	PC++;
 }
 
 /* $22 BHI relative ----- */

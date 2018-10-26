@@ -10,13 +10,15 @@
 
 uint32_t led_states;
 
-static uint8_t RAM[256];
-static uint8_t ROM[48*1024];
+static uint8_t RAM[ RAM_SIZE ];
+static uint8_t ROM[ ROM_SIZE ];
 
 MemoryRange memoryRanges[] = {
 	// base             end					intAddr ext pia writable
-	{ RAM_BASE,      	RAM_BASE+255, 		RAM,	0, 	0, 	1 },	// RAM
-	{ CMOS_RAM_BASE, 	CMOS_RAM_BASE+255, 	NULL,	1, 	0, 	1 },	// CMOS RAM (persistent, external)
+	{ RAM_BASE,      	RAM_END, 			RAM,	0, 	0, 	1 },	// RAM
+#if HAS_SEPARATE_RAM
+	{ CMOS_RAM_BASE, 	CMOS_RAM_END, 		NULL,	1, 	0, 	1 },	// CMOS RAM (persistent, external)
+#endif
 	{ PIA_BASE, 		PIA_END,  			NULL,	1, 	1, 	1 },	// PIA
-	{ ROM_BASE,			ROM_BASE+0x2FFF,	NULL,	1,	0,	0 },	// all ROM
+	{ ROM_BASE,			ROM_END,			ROM,	0,	0,	0 },	// all ROM
 };

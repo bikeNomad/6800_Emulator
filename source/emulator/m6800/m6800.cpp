@@ -247,6 +247,7 @@ static const UINT8 flags8d[256]= /* decrement */
 #define IDXWORD(w) {INDEXED;w.d=RM16(EAD);}
 
 /* Macros for branch instructions */
+// TODO(nk): define CHANGE_PC()
 #define CHANGE_PC()
 #define BRANCH(f) {IMMBYTE(t);if(f){PC+=SIGNED(t);CHANGE_PC();}}
 #define NXORV  ((CC&0x08)^((CC&0x02)<<2))
@@ -754,7 +755,7 @@ const char *m6800_info(void *context, int regnum)
 {
 	static char buffer[16][47+1];
 	static int which = 0;
-	m6800_Regs *r = context;
+	m6800_Regs const *r = static_cast<m6800_Regs const *>(context);
 
 	which = (which+1) % 16;
 	buffer[which][0] = '\0';

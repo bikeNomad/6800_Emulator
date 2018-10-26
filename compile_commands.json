@@ -1,127 +1,137 @@
 [
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_debug_console.o ../utilities/fsl_debug_console.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_debug_console.o ../utilities/fsl_debug_console.c",
     "file": "../utilities/fsl_debug_console.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_io.o ../utilities/fsl_io.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_io.o ../utilities/fsl_io.c",
     "file": "../utilities/fsl_io.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_log.o ../utilities/fsl_log.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_log.o ../utilities/fsl_log.c",
     "file": "../utilities/fsl_log.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_shell.o ../utilities/fsl_shell.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_shell.o ../utilities/fsl_shell.c",
     "file": "../utilities/fsl_shell.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_str.o ../utilities/fsl_str.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o utilities/fsl_str.o ../utilities/fsl_str.c",
     "file": "../utilities/fsl_str.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o source/emulator/m6800/m6800.o ../source/emulator/m6800/m6800.c",
-    "file": "../source/emulator/m6800/m6800.c"
+    "command": "arm-none-eabi-c\\+\\+ -std\\=gnu\\+\\+14 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator/m6800 -I../source/emulator -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o startup/startup_mke18f16.o ../startup/startup_mke18f16.cpp",
+    "file": "../startup/startup_mke18f16.cpp"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o source/emulator/arm_emulator.o ../source/emulator/arm_emulator.c",
-    "file": "../source/emulator/arm_emulator.c"
+    "command": "arm-none-eabi-c\\+\\+ -std\\=gnu\\+\\+14 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator/m6800 -I../source/emulator -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o source/emulator/m6800/m6800.o ../source/emulator/m6800/m6800.cpp",
+    "file": "../source/emulator/m6800/m6800.cpp"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o source/semihost_hardfault.o ../source/semihost_hardfault.c",
+    "command": "arm-none-eabi-c\\+\\+ -std\\=gnu\\+\\+14 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator/m6800 -I../source/emulator -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o source/emulator/arm_emulator.o ../source/emulator/arm_emulator.cpp",
+    "file": "../source/emulator/arm_emulator.cpp"
+  },
+  {
+    "directory": "/Users/ned/src/6800_Emulator/Debug",
+    "command": "arm-none-eabi-c\\+\\+ -std\\=gnu\\+\\+14 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator/m6800 -I../source/emulator -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o source/main.o ../source/main.cpp",
+    "file": "../source/main.cpp"
+  },
+  {
+    "directory": "/Users/ned/src/6800_Emulator/Debug",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o source/semihost_hardfault.o ../source/semihost_hardfault.c",
     "file": "../source/semihost_hardfault.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_clock.o ../drivers/fsl_clock.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_clock.o ../drivers/fsl_clock.c",
     "file": "../drivers/fsl_clock.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_common.o ../drivers/fsl_common.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_common.o ../drivers/fsl_common.c",
     "file": "../drivers/fsl_common.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_crc.o ../drivers/fsl_crc.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_crc.o ../drivers/fsl_crc.c",
     "file": "../drivers/fsl_crc.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_dac32.o ../drivers/fsl_dac32.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_dac32.o ../drivers/fsl_dac32.c",
     "file": "../drivers/fsl_dac32.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_ftfx_cache.o ../drivers/fsl_ftfx_cache.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_ftfx_cache.o ../drivers/fsl_ftfx_cache.c",
     "file": "../drivers/fsl_ftfx_cache.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_ftfx_controller.o ../drivers/fsl_ftfx_controller.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_ftfx_controller.o ../drivers/fsl_ftfx_controller.c",
     "file": "../drivers/fsl_ftfx_controller.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_ftfx_flash.o ../drivers/fsl_ftfx_flash.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_ftfx_flash.o ../drivers/fsl_ftfx_flash.c",
     "file": "../drivers/fsl_ftfx_flash.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_ftfx_flexnvm.o ../drivers/fsl_ftfx_flexnvm.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_ftfx_flexnvm.o ../drivers/fsl_ftfx_flexnvm.c",
     "file": "../drivers/fsl_ftfx_flexnvm.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_gpio.o ../drivers/fsl_gpio.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_gpio.o ../drivers/fsl_gpio.c",
     "file": "../drivers/fsl_gpio.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_lpuart.o ../drivers/fsl_lpuart.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_lpuart.o ../drivers/fsl_lpuart.c",
     "file": "../drivers/fsl_lpuart.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_smc.o ../drivers/fsl_smc.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_smc.o ../drivers/fsl_smc.c",
     "file": "../drivers/fsl_smc.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_trgmux.o ../drivers/fsl_trgmux.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o drivers/fsl_trgmux.o ../drivers/fsl_trgmux.c",
     "file": "../drivers/fsl_trgmux.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o board/board.o ../board/board.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o board/board.o ../board/board.c",
     "file": "../board/board.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o board/clock_config.o ../board/clock_config.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o board/clock_config.o ../board/clock_config.c",
     "file": "../board/clock_config.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o board/peripherals.o ../board/peripherals.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o board/peripherals.o ../board/peripherals.c",
     "file": "../board/peripherals.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o board/pin_mux.o ../board/pin_mux.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o board/pin_mux.o ../board/pin_mux.c",
     "file": "../board/pin_mux.c"
   },
   {
     "directory": "/Users/ned/src/6800_Emulator/Debug",
-    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o CMSIS/system_MKE18F16.o ../CMSIS/system_MKE18F16.c",
+    "command": "arm-none-eabi-gcc -std\\=gnu11 -D__NEWLIB__ -DSYSTEM_11 -DHAS_M6808 -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE\\=1 -DCPU_MKE18F512VLL16 -DCPU_MKE18F512VLL16_cm4 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I../source/emulator -I../source/emulator/m6800 -I../CMSIS -I../drivers -I../utilities -I../board -I../source -I../ -I../startup -c -mcpu\\=cortex-m4 -mthumb -D__NEWLIB__ -o CMSIS/system_MKE18F16.o ../CMSIS/system_MKE18F16.c",
     "file": "../CMSIS/system_MKE18F16.c"
   }
 ]

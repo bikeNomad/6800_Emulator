@@ -5,6 +5,11 @@
             <build_file_path>
                 <compilation_db_path>compile_commands.json</compilation_db_path>
             </build_file_path>
+            <compiler_flags>
+                <compiler_flag>-DHAS_M6808</compiler_flag>
+                <compiler_flag>-DHAS_M6800</compiler_flag>
+                <compiler_flag>-DSYSTEM_11=1</compiler_flag>
+            </compiler_flags>
             <indexed_header_paths>
                 <indexed_header_path>./</indexed_header_path>
             </indexed_header_paths>
