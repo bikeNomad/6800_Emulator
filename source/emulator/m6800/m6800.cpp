@@ -470,10 +470,22 @@ int m6800_execute(int cycles)
 
 	m6800.extra_cycles = 0;
 
+	// interrupt lines are active-low
+	uint16_t lastInterruptLines = BOARD_NMI_MASK | BOARD_IRQ_MASK;
+
 	do
 	{
+		// TODO(nk): set up IRQ lines as edge-triggered interrupts
+		uint16_t interruptLines = readInterruptLines();
+		if (interruptLines ^ lastInterruptLines) {
+			m6800_set_irq_line(IRQ_LINE_NMI, (interruptLines & BOARD_NMI_MASK) ? CLEAR_LINE : ASSERT_LINE);
+			m6800_set_irq_line(M6800_IRQ_LINE, (interruptLines & BOARD_IRQ_MASK) ? CLEAR_LINE : ASSERT_LINE);
+			lastInterruptLines = interruptLines;
+		}
+
 		if( m6800.wai_state & M6800_WAI )
 		{
+			CHECK_IRQ_LINES();
 		}
 		else
 		{
