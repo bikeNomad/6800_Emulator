@@ -132,6 +132,8 @@ void startShell() {
 	char exHelp[] = "EX nInstructions -- execute instructions";
 	shell_command_context_t exCmdContext {&exCmd[0], &exHelp[0], &handleExecuteCommand, static_cast<uint8_t>(1) };
 	SHELL_RegisterCommand(&exCmdContext);
+
+	SHELL_Main(&shellContext);
 }
 
 
@@ -145,10 +147,9 @@ int main(void) {
     BOARD_InitDebugConsole();
 
     crcRoms();
-    startShell();
 
     while (1) {
-
+        startShell();
     }
 }
 
