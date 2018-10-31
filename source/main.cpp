@@ -33,6 +33,9 @@
  * @brief   Application entry point.
  */
 #include <stdio.h>
+#include <stdlib.h>
+#include <inttypes.h>
+
 #include "board.h"
 #include "peripherals.h"
 #include "pin_mux.h"
@@ -108,6 +111,15 @@ static void recvShellData(unsigned char *buf, long unsigned nChars) {
 }
 
 static int32_t handleChecksumCommand(p_shell_context_t context, int32_t argc, char **argv) {
+	unsigned long startAddress = 0;
+	unsigned long endAddress = 0;
+	char *endptr;
+	startAddress = strtoul(argv[1], &endptr, 0);
+	endAddress = strtoul(argv[2], &endptr, 0);
+	if (startAddress > 0xFFFF || endAddress > 0xFFFF) {
+		return -1;
+	}
+	PrintCrc32(startAddress, endAddress+1-startAddress);
 	return 0;
 }
 
