@@ -100,9 +100,10 @@ static void sendShellData(unsigned char *buf, long unsigned nChars) {
 }
 
 static void recvShellData(unsigned char *buf, long unsigned nChars) {
-	int nReceived = LOG_Pop(buf, nChars);
-	if (!nReceived) {
-		*buf = 255;
+	while (nChars--) {
+		if (LOG_ReadCharacter(buf++) != 1) {
+			return;
+		}
 	}
 }
 
@@ -125,14 +126,14 @@ void startShell() {
 	        (char *)&prompt[0]);
 
 	// CS start end -- print ROM checksum
-	const char csCmd[] = "CS";
-	char csHelp[] = "CS start end -- print ROM checksum";
+	const char csCmd[] = "cs";
+	char csHelp[] = "\r\ncs start end -- print ROM checksum\r\n";
 	shell_command_context_t csCmdContext {&csCmd[0], &csHelp[0], &handleChecksumCommand, static_cast<uint8_t>(2) };
 	SHELL_RegisterCommand(&csCmdContext);
 
 	// EX nInstructions -- execute instructions
-	const char exCmd[] = "EX";
-	char exHelp[] = "EX nInstructions -- execute instructions";
+	const char exCmd[] = "ex";
+	char exHelp[] = "\r\nex nInstructions -- execute instructions\r\n";
 	shell_command_context_t exCmdContext {&exCmd[0], &exHelp[0], &handleExecuteCommand, static_cast<uint8_t>(1) };
 	SHELL_RegisterCommand(&exCmdContext);
 
