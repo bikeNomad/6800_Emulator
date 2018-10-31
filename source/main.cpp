@@ -100,7 +100,10 @@ static void sendShellData(unsigned char *buf, long unsigned nChars) {
 }
 
 static void recvShellData(unsigned char *buf, long unsigned nChars) {
-	LOG_Pop(buf, nChars);
+	int nReceived = LOG_Pop(buf, nChars);
+	if (!nReceived) {
+		*buf = 255;
+	}
 }
 
 static int32_t handleChecksumCommand(p_shell_context_t context, int32_t argc, char **argv) {
