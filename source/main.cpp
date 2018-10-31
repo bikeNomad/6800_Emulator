@@ -40,9 +40,10 @@
 #include "MKE18F16.h"
 #include "fsl_debug_console.h"
 #include "fsl_crc.h"
-/* TODO: insert other include files here. */
 
-/* TODO: insert other definitions and declarations here. */
+#include "fsl_log.h"
+#include "fsl_shell.h"
+
 #include "arm_emulator.h"
 
 /*!
@@ -81,6 +82,59 @@ void PrintCrc32(uint16_t extAddressBase, uint16_t nBytes) {
 	PRINTF("%04X-%04X CRC=%04X\r\n", extAddressBase, extAddressBase+nBytes-1, crc);
 }
 
+void crcRoms() {
+    PRINTF("Pinball ROM CRC check\r\n");
+#ifdef SYSTEM_11
+	PrintCrc32(ROM_2_BASE, ROM_2_SIZE);
+	PrintCrc32(ROM_1_BASE, ROM_1_SIZE);
+#else
+	PrintCrc32(ROM_5800_BASE, 0x0800);
+	PrintCrc32(ROM_6000_BASE, 0x0800);
+	PrintCrc32(ROM_6800_BASE, 0x0800);
+	PrintCrc32(ROM_7000_BASE, 0x1000);
+#endif
+}
+
+static void sendShellData(unsigned char *buf, long unsigned nChars) {
+	LOG_Push(buf, (unsigned)nChars);
+}
+
+static void recvShellData(unsigned char *buf, long unsigned nChars) {
+	LOG_Pop(buf, nChars);
+}
+
+static int32_t handleChecksumCommand(p_shell_context_t context, int32_t argc, char **argv) {
+	return 0;
+}
+
+static int32_t handleExecuteCommand(p_shell_context_t context, int32_t argc, char **argv) {
+	return 0;
+}
+
+void startShell() {
+	static shell_context_struct shellContext;
+	const char prompt[] = "> ";
+
+	SHELL_Init(&shellContext,
+			&sendShellData,
+			&recvShellData,
+			&DbgConsole_Printf,
+	        (char *)&prompt[0]);
+
+	// CS start end -- print ROM checksum
+	const char csCmd[] = "CS";
+	char csHelp[] = "CS start end -- print ROM checksum";
+	shell_command_context_t csCmdContext {&csCmd[0], &csHelp[0], &handleChecksumCommand, static_cast<uint8_t>(2) };
+	SHELL_RegisterCommand(&csCmdContext);
+
+	// EX nInstructions -- execute instructions
+	const char exCmd[] = "EX";
+	char exHelp[] = "EX nInstructions -- execute instructions";
+	shell_command_context_t exCmdContext {&exCmd[0], &exHelp[0], &handleExecuteCommand, static_cast<uint8_t>(1) };
+	SHELL_RegisterCommand(&exCmdContext);
+}
+
+
 int main(void) {
   	/* Init board hardware. */
     BOARD_InitBootPins();
@@ -90,18 +144,11 @@ int main(void) {
   	/* Init FSL debug console. */
     BOARD_InitDebugConsole();
 
-    PRINTF("Pinball ROM CRC check\r\n");
+    crcRoms();
+    startShell();
 
     while (1) {
-#ifdef SYSTEM_11
-    	PrintCrc32(ROM_2_BASE, ROM_2_SIZE);
-    	PrintCrc32(ROM_1_BASE, ROM_1_SIZE);
-#else
-    	PrintCrc32(ROM_5800_BASE, 0x0800);
-    	PrintCrc32(ROM_6000_BASE, 0x0800);
-    	PrintCrc32(ROM_6800_BASE, 0x0800);
-    	PrintCrc32(ROM_7000_BASE, 0x1000);
-#endif
+
     }
 }
 
