@@ -10,8 +10,10 @@
 
 uint32_t led_states;
 
+static uint8_t ROM[ 32 * 1024 ] __attribute__((used,section(".data.$SRAM_LOWER_ROM")));
+static uint8_t ROM_UPPER[ 16 * 1024 ] __attribute__((used,section(".data.$SRAM_UPPER_ROM")));
+
 static uint8_t RAM[ RAM_SIZE ];
-static uint8_t ROM[ ROM_SIZE ];
 
 MemoryRange memoryRanges[] = {
 	// base             end					intAddr ext pia writable

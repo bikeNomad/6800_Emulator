@@ -48,6 +48,7 @@
 #include "fsl_shell.h"
 
 #include "arm_emulator.h"
+#include "m6800.h"
 
 /*!
  * @brief Init for CRC-32.
@@ -99,7 +100,7 @@ void crcRoms() {
 }
 
 static void sendShellData(unsigned char *buf, long unsigned nChars) {
-	LOG_Push(buf, (unsigned)nChars);
+	LOG_Push(buf, (size_t)nChars);
 }
 
 static void recvShellData(unsigned char *buf, long unsigned nChars) {
@@ -111,11 +112,15 @@ static void recvShellData(unsigned char *buf, long unsigned nChars) {
 }
 
 static int32_t handleChecksumCommand(p_shell_context_t context, int32_t argc, char **argv) {
-	unsigned long startAddress = 0;
-	unsigned long endAddress = 0;
 	char *endptr;
-	startAddress = strtoul(argv[1], &endptr, 0);
-	endAddress = strtoul(argv[2], &endptr, 0);
+	unsigned long startAddress = strtoul(argv[1], &endptr, 0);
+	if (*endptr) {
+		return -1;
+	}
+	unsigned long endAddress = strtoul(argv[2], &endptr, 0);
+	if (*endptr) {
+		return -1;
+	}
 	if (startAddress > 0xFFFF || endAddress > 0xFFFF) {
 		return -1;
 	}
@@ -124,6 +129,12 @@ static int32_t handleChecksumCommand(p_shell_context_t context, int32_t argc, ch
 }
 
 static int32_t handleExecuteCommand(p_shell_context_t context, int32_t argc, char **argv) {
+	char *endptr;
+	unsigned long numInstructions = strtoul(argv[1], &endptr, 0);
+	if (*endptr || !numInstructions) {
+		return -1;
+	}
+	m6800_execute(numInstructions);
 	return 0;
 }
 
@@ -151,6 +162,9 @@ void startShell() {
 
 	SHELL_Main(&shellContext);
 }
+
+void logerror(char const*, ...) { }
+unsigned int Dasm680x(int, char *, unsigned int) { return 0; }
 
 
 int main(void) {
