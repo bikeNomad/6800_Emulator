@@ -434,10 +434,12 @@
                <clock_outputs>
                   <clock_output id="Bus_clock.outFreq" value="56/3 MHz" locked="false" accuracy=""/>
                   <clock_output id="Core_clock.outFreq" value="168 MHz" locked="true" accuracy="0.001"/>
+                  <clock_output id="FIRCDIV1_CLK.outFreq" value="30 MHz" locked="false" accuracy=""/>
                   <clock_output id="FIRCDIV2_CLK.outFreq" value="30 MHz" locked="false" accuracy=""/>
                   <clock_output id="Flash_clock.outFreq" value="24 MHz" locked="false" accuracy=""/>
                   <clock_output id="LPO1KCLK.outFreq" value="1 kHz" locked="false" accuracy=""/>
                   <clock_output id="LPO_clock.outFreq" value="128 kHz" locked="false" accuracy=""/>
+                  <clock_output id="PCC.PCC_FTM0_CLK.outFreq" value="30 MHz" locked="false" accuracy=""/>
                   <clock_output id="PCC.PCC_LPUART0_CLK.outFreq" value="30 MHz" locked="false" accuracy=""/>
                   <clock_output id="PCC.PCC_LPUART1_CLK.outFreq" value="30 MHz" locked="false" accuracy=""/>
                   <clock_output id="SIRC_CLK.outFreq" value="8 MHz" locked="false" accuracy=""/>
@@ -446,13 +448,16 @@
                <clock_settings>
                   <setting id="SCGMode" value="SPLL" locked="false"/>
                   <setting id="powerMode" value="HSRUN" locked="false"/>
+                  <setting id="PCC.PCC_FTM0_SEL.sel" value="SCG.FIRCDIV1_CLK" locked="false"/>
                   <setting id="PCC.PCC_LPUART0_SEL.sel" value="SCG.FIRCDIV2_CLK" locked="false"/>
                   <setting id="PCC.PCC_LPUART1_SEL.sel" value="SCG.FIRCDIV2_CLK" locked="false"/>
                   <setting id="SCG.DIVBUS.scale" value="9" locked="false"/>
                   <setting id="SCG.DIVSLOW.scale" value="7" locked="false"/>
+                  <setting id="SCG.FIRCDIV1.scale" value="2" locked="true"/>
                   <setting id="SCG.FIRCDIV2.scale" value="2" locked="true"/>
                   <setting id="SCG.PREDIV.scale" value="5" locked="false"/>
                   <setting id="SCG.SCSSEL.sel" value="SCG.SPLL_DIV2_CLK" locked="false"/>
+                  <setting id="SCG.SPLLDIV1.scale" value="0" locked="true"/>
                   <setting id="SCG.SPLLSRCSEL.sel" value="SCG.FIRC" locked="false"/>
                   <setting id="SCG.SPLL_mul.scale" value="28" locked="false"/>
                   <setting id="SCG::RCCR[DIVBUS].bitField" value="BitFieldValue" locked="false"/>

@@ -114,10 +114,12 @@ name: BOARD_FastClock
 outputs:
 - {id: Bus_clock.outFreq, value: 56/3 MHz}
 - {id: Core_clock.outFreq, value: 168 MHz, locked: true, accuracy: '0.001'}
+- {id: FIRCDIV1_CLK.outFreq, value: 30 MHz}
 - {id: FIRCDIV2_CLK.outFreq, value: 30 MHz}
 - {id: Flash_clock.outFreq, value: 24 MHz}
 - {id: LPO1KCLK.outFreq, value: 1 kHz}
 - {id: LPO_clock.outFreq, value: 128 kHz}
+- {id: PCC.PCC_FTM0_CLK.outFreq, value: 30 MHz}
 - {id: PCC.PCC_LPUART0_CLK.outFreq, value: 30 MHz}
 - {id: PCC.PCC_LPUART1_CLK.outFreq, value: 30 MHz}
 - {id: SIRC_CLK.outFreq, value: 8 MHz}
@@ -125,13 +127,16 @@ outputs:
 settings:
 - {id: SCGMode, value: SPLL}
 - {id: powerMode, value: HSRUN}
+- {id: PCC.PCC_FTM0_SEL.sel, value: SCG.FIRCDIV1_CLK}
 - {id: PCC.PCC_LPUART0_SEL.sel, value: SCG.FIRCDIV2_CLK}
 - {id: PCC.PCC_LPUART1_SEL.sel, value: SCG.FIRCDIV2_CLK}
 - {id: SCG.DIVBUS.scale, value: '9'}
 - {id: SCG.DIVSLOW.scale, value: '7'}
+- {id: SCG.FIRCDIV1.scale, value: '2', locked: true}
 - {id: SCG.FIRCDIV2.scale, value: '2', locked: true}
 - {id: SCG.PREDIV.scale, value: '5'}
 - {id: SCG.SCSSEL.sel, value: SCG.SPLL_DIV2_CLK}
+- {id: SCG.SPLLDIV1.scale, value: '0', locked: true}
 - {id: SCG.SPLLSRCSEL.sel, value: SCG.FIRC}
 - {id: SCG.SPLL_mul.scale, value: '28'}
 - {id: 'SCG::RCCR[DIVBUS].bitField', value: BitFieldValue}
@@ -173,7 +178,7 @@ const scg_sirc_config_t g_scgSircConfig_BOARD_FastClock =
 const scg_firc_config_t g_scgFircConfig_BOARD_FastClock =
     {
         .enableMode = kSCG_FircEnable,            /* Enable FIRC clock */
-        .div1 = kSCG_AsyncClkDisable,             /* Fast IRC Clock Divider 1: Clock output is disabled */
+        .div1 = kSCG_AsyncClkDivBy2,              /* Fast IRC Clock Divider 1: divided by 2 */
         .div2 = kSCG_AsyncClkDivBy2,              /* Fast IRC Clock Divider 2: divided by 2 */
         .range = kSCG_FircRange60M,               /* Fast IRC is trimmed to 60MHz */
         .trimConfig = NULL,                       /* Fast IRC Trim disabled */
@@ -221,6 +226,8 @@ void BOARD_FastClock(void)
     CLOCK_SetIpSrc(kCLOCK_Lpuart0, kCLOCK_IpSrcFircAsync);
     /* Set PCC LPUART1 selection */
     CLOCK_SetIpSrc(kCLOCK_Lpuart1, kCLOCK_IpSrcFircAsync);
+    /* Set PCC FTM0 selection */
+    CLOCK_SetIpSrc(kCLOCK_Ftm0, kCLOCK_IpSrcFircAsync);
 }
 
 /*******************************************************************************
