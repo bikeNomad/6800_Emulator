@@ -96,7 +96,6 @@ unsigned m6808_dasm(char *buffer, unsigned pc);
 /****************************************************************************/
 /* Read a byte from given memory location									*/
 /****************************************************************************/
-/* ASG 971005 -- changed to cpu_readmem16/cpu_writemem16 */
 #define M6800_RDMEM(Addr) ((unsigned)cpu_readmem16(Addr))
 
 /****************************************************************************/
@@ -106,8 +105,7 @@ unsigned m6808_dasm(char *buffer, unsigned pc);
 
 /****************************************************************************/
 /* M6800_RDOP() is identical to M6800_RDMEM() except it is used for reading */
-/* opcodes. In case of system with memory mapped I/O, this function can be  */
-/* used to greatly speed up emulation                                       */
+/* opcodes. Since all of our ROM is internal, this makes things a lot faster. */
 /****************************************************************************/
 #define M6800_RDOP(Addr) ((unsigned)cpu_readop(Addr))
 

@@ -147,8 +147,8 @@ static int32_t handleHexDumpCommand(p_shell_context_t context, int32_t argc, cha
 	if (*endptr || !numBytes || startAddress + numBytes > 0x10000) { return -1; }
 	uint16_t bytesPrinted = 0;
 	for (uint16_t addr = startAddress; bytesPrinted < numBytes; bytesPrinted++, addr++) {
-		if (bytesPrinted % 16 == 0) { PRINTF("\r\n"); }
-		PRINTF("%02x ", cpu_readmem16(addr));
+		if (bytesPrinted % 16 == 0) { PRINTF("\r\n%04x ", addr); }
+		PRINTF(" %02x", cpu_readmem16(addr));
 	}
 	PRINTF("\r\n");
 

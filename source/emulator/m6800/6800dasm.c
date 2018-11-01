@@ -25,6 +25,7 @@
 #include "fsl_port.h"
 #include "fsl_gpio.h"
 #include "pin_mux.h"
+#include "arm_emulator.h"
 #include "m6800.h"
 #include "mamedbg.h"
 

@@ -39,5 +39,3 @@ void copyRomsToRam() {
 	copyExternalToInternal(ROM_1_BASE, ROM_1_SIZE);
 	memoryRanges[ROM_2_INDEX].isExternal = 0;
 }
-
-void logerror(char const*, ...) { }

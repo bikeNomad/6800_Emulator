@@ -5,25 +5,13 @@
  *      Author: ned
  */
 
-// PTA8 (MCU_E) alt.5 is FTM_FLT3
-// TODO(nk): would be nice to use a timer output for E clock!
-// could use any of EX1..EX5 for this.
-
-// PTE8 (EX_1) alt.2 is FTM0_CH6
-// PTC3 (EX_2) alt.2 is FTM0_CH3
-// PTC2 (EX_3) alt.2 is FTM0_CH2
-// PTC1 (EX_4) alt.2 is FTM0_CH1
-// PTC0 (EX_5) alt.2 is FTM0_CH0
-// PTC17 (EX_6) default is ADC0_SE15
-// PTC16 (EX_7) default is ADC0_SE14
-// PTC15 (EX_8) default is ADC0_SE13
-
 #pragma once
 
 #include <stdint.h>
 #include "board.h"
 #include "peripherals.h"
 #include "pin_mux.h"
+#include "fsl_debug_console.h"
 
 /* ----- typedefs for data and offset types ----- */
 
@@ -302,9 +290,9 @@ INLINE void cpu_writemem16(uint16_t addr, uint8_t val) {
 
 INLINE uint8_t cpu_readop(uint16_t addr) { return cpu_read_rom_internal(addr); }
 
-INLINE uint8_t cpu_readop_arg(uint16_t addr) { return cpu_readop(addr); }
+INLINE uint8_t cpu_readop_arg(uint16_t addr) { return cpu_read_rom_internal(addr); }
 
-void logerror(const char *text, ...);
+#define logerror(...) PRINTF(__VA_ARGS__)
 
 void copyExternalToInternal(uint16_t extStart, uint16_t size);
 
