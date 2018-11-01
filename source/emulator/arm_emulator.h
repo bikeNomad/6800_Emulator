@@ -180,7 +180,12 @@ extern MemoryRange memoryRanges[NUM_MEMORY_RANGES];
 
 static_assert(ROM_1_BASE > ROM_2_BASE, "roms out of order");
 
-constexpr MemoryRange const* findMemoryRange(uint16_t addr) {
+#if __cplusplus
+constexpr
+#else
+INLINE
+#endif
+MemoryRange const* findMemoryRange(uint16_t addr) {
 	if (addr > ROM_1_BASE) { return memoryRanges+ROM_1_INDEX; }
 	if (addr > ROM_2_BASE) { return memoryRanges+ROM_2_INDEX; }
 	if (addr > PIA_BASE) { return memoryRanges+PIA_INDEX; }
@@ -196,12 +201,12 @@ INLINE uint8_t cpu_readmem_internal(MemoryRange const * range, uint16_t addr) {
 
 INLINE uint8_t cpu_read_rom_internal(uint16_t addr) {
 	if (addr > ROM_1_BASE) {
-		static MemoryRange const &rom1 = memoryRanges[ROM_1_INDEX];
-		return *(uint8_t const *)(rom1.internalAddress + (addr - rom1.baseAddress));
+		static MemoryRange const *rom1 = &memoryRanges[ROM_1_INDEX];
+		return *(uint8_t const *)(rom1->internalAddress + (addr - rom1->baseAddress));
 	}
 	/* if (addr > ROM_2_BASE) */ else {
-		static MemoryRange const &rom2 = memoryRanges[ROM_2_INDEX];
-		return *(uint8_t const *)(rom2.internalAddress + (addr - rom2.baseAddress));
+		static MemoryRange const *rom2 = &memoryRanges[ROM_2_INDEX];
+		return *(uint8_t const *)(rom2->internalAddress + (addr - rom2->baseAddress));
 	}
 }
 

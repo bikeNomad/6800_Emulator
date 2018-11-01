@@ -155,6 +155,28 @@ static int32_t handleHexDumpCommand(p_shell_context_t context, int32_t argc, cha
 	return 0;
 }
 
+// U51 (0x2800) PA4 low = LED2(diagnostic) ON
+PIA u51(0x2800);
+const uint8_t diagLedBit = 1<<4;
+
+// led nTimes -- pulse DIAGNOSTIC LED given number of times
+static int32_t handleDiagnosticLEDCommand(p_shell_context_t context, int32_t argc, char **argv) {
+	char *endptr = 0;
+	unsigned long nTimes = strtoul(argv[1], &endptr, 0);
+	if (!nTimes || *endptr) {
+		return -1;
+	}
+
+	u51.setDataDirectionA(diagLedBit, diagLedBit);
+
+	while (nTimes--) {
+		u51.outputA(0, diagLedBit);			// turn ON
+		u51.outputA(diagLedBit, diagLedBit);	// turn OFF
+	}
+
+	return 0;
+}
+
 void startShell() {
 	static shell_context_struct shellContext;
 	const char prompt[] = "> ";
@@ -186,11 +208,20 @@ void startShell() {
 		&handleHexDumpCommand, 2 };
 	SHELL_RegisterCommand(&hdCmdContext);
 
+	// LED nTimes -- pulse diag LED
+	shell_command_context_t ledCmdContext {
+		"led",
+		"\r\nLED nTimes -- pulse diag LED\r\n",
+		&handleDiagnosticLEDCommand, 1 };
+	SHELL_RegisterCommand(&ledCmdContext);
+
 	SHELL_Main(&shellContext);
 }
 
 // TODO(nk): get disassembler working. Stub for now:
 unsigned int Dasm680x(int, char *, unsigned int) { return 0; }
+
+
 
 int main(void) {
   	/* Init board hardware. */

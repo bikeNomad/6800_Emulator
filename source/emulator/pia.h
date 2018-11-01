@@ -8,7 +8,6 @@
 #ifndef PIA_H_
 #define PIA_H_
 
-// U51 (0x2800) PA4 low = LED2(diagnostic) ON
 
 // PIAs are always external.
 class PIA {
@@ -61,6 +60,20 @@ public:
 
 		uint8_t ddrB = registerRead(REG_PRB_DDRB) & ~mask;	// keep non-mask bits
 		registerWrite(REG_PRB_DDRB, ddrB | outputBits);
+	}
+
+	void outputA(uint8_t outputBits, uint8_t mask) {
+		uint8_t cr = registerRead(REG_CRA);
+		registerWrite(REG_CRA, cr & ~CR_DDR_ACCESS);	// select PRA
+		uint8_t pr = registerRead(REG_PRA_DDRA);
+		registerWrite(REG_PRA_DDRA, (pr & ~mask) | outputBits);
+	}
+
+	void outputB(uint8_t outputBits, uint8_t mask) {
+		uint8_t cr = registerRead(REG_CRA);
+		registerWrite(REG_CRB, cr & ~CR_DDR_ACCESS);	// select PRA
+		uint8_t pr = registerRead(REG_PRB_DDRB);
+		registerWrite(REG_PRB_DDRB, (pr & ~mask) | outputBits);
 	}
 
 protected:
