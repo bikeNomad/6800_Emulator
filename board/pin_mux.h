@@ -293,13 +293,6 @@ void BOARD_InitBootPins(void);
 #define BOARD_INITPINS_MCU_IRQ_PIN 6U     /*!<@brief PORTA pin index: 6 */
                                           /* @} */
 
-/*! @name PORTA8 (number 100), MCU_E
-  @{ */
-#define BOARD_INITPINS_MCU_E_GPIO GPIOA /*!<@brief GPIO device name: GPIOA */
-#define BOARD_INITPINS_MCU_E_PORT PORTA /*!<@brief PORT device name: PORTA */
-#define BOARD_INITPINS_MCU_E_PIN 8U     /*!<@brief PORTA pin index: 8 */
-                                        /* @} */
-
 /*! @name PORTA9 (number 99), MCU_RESET
   @{ */
 #define BOARD_INITPINS_MCU_RESET_GPIO GPIOA /*!<@brief GPIO device name: GPIOA */
@@ -334,13 +327,6 @@ void BOARD_InitBootPins(void);
 #define BOARD_INITPINS_LED_3_PORT PORTB /*!<@brief PORT device name: PORTB */
 #define BOARD_INITPINS_LED_3_PIN 16U    /*!<@brief PORTB pin index: 16 */
                                         /* @} */
-
-/*! @name PORTC0 (number 40), EX_5
-  @{ */
-#define BOARD_INITPINS_EX_5_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
-#define BOARD_INITPINS_EX_5_PORT PORTC /*!<@brief PORT device name: PORTC */
-#define BOARD_INITPINS_EX_5_PIN 0U     /*!<@brief PORTC pin index: 0 */
-                                       /* @} */
 
 /*! @name PORTC1 (number 39), EX_4
   @{ */
@@ -389,6 +375,19 @@ void BOARD_InitBootPins(void);
 #define BOARD_INITPINS_EX_1_GPIO GPIOE /*!<@brief GPIO device name: GPIOE */
 #define BOARD_INITPINS_EX_1_PORT PORTE /*!<@brief PORT device name: PORTE */
 #define BOARD_INITPINS_EX_1_PIN 8U     /*!<@brief PORTE pin index: 8 */
+                                       /* @} */
+
+/*! @name PORTA8 (number 100), MCU_E
+  @{ */
+#define BOARD_INITPINS_MCU_E_GPIO GPIOA /*!<@brief GPIO device name: GPIOA */
+#define BOARD_INITPINS_MCU_E_PORT PORTA /*!<@brief PORT device name: PORTA */
+#define BOARD_INITPINS_MCU_E_PIN 8U     /*!<@brief PORTA pin index: 8 */
+                                        /* @} */
+
+/*! @name PORTC0 (number 40), EX_5_E_CLK_OUT
+  @{ */
+#define BOARD_INITPINS_EX_5_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_EX_5_PIN 0U     /*!<@brief PORTC pin index: 0 */
                                        /* @} */
 
 /*!

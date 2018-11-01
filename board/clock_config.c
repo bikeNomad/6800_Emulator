@@ -246,8 +246,6 @@ settings:
 - {id: SCG.DIVSLOW.scale, value: '5'}
 - {id: SCG.SCSSEL.sel, value: SCG.SIRC}
 - {id: 'SCG::FIRCCFG[RANGE].bitField', value: BitFieldValue}
-- {id: 'SCG::VCCR[DIVCORE].bitField', value: BitFieldValue}
-- {id: 'SCG::VCCR[DIVSLOW].bitField', value: BitFieldValue}
 - {id: SCG_FIRCCSR_FIRCEN_CFG, value: Disabled}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 /* clang-format on */

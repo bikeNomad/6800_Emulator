@@ -68,7 +68,7 @@
                <pin_label pin_num="65" pin_signal="ADC1_SE14/PTB15/FTM0_CH3/LPSPI1_SIN" label="LED_2" identifier="LED_2"/>
                <pin_label pin_num="64" pin_signal="ADC1_SE15/PTB16/FTM0_CH4/LPSPI1_SOUT" label="LED_3" identifier="LED_3"/>
                <pin_label pin_num="63" pin_signal="ADC2_SE3/PTB17/FTM0_CH5/LPSPI1_PCS3" label="LED_4" identifier="LED_4"/>
-               <pin_label pin_num="40" pin_signal="ADC0_SE8/ACMP1_IN4/PTC0/FTM0_CH0/FTM1_CH6" label="EX_5" identifier="EX_5"/>
+               <pin_label pin_num="40" pin_signal="ADC0_SE8/ACMP1_IN4/PTC0/FTM0_CH0/FTM1_CH6" label="EX_5_E_CLK_OUT" identifier="EX_5"/>
                <pin_label pin_num="39" pin_signal="ADC0_SE9/ACMP1_IN3/PTC1/FTM0_CH1/FTM1_CH7" label="EX_4" identifier="EX_4"/>
                <pin_label pin_num="30" pin_signal="ADC0_SE10/ACMP0_IN5/XTAL32/PTC2/FTM0_CH2/CAN0_RX" label="EX_3" identifier="EX_3"/>
                <pin_label pin_num="29" pin_signal="ADC0_SE11/ACMP0_IN4/EXTAL32/PTC3/FTM0_CH3/CAN0_TX" label="EX_2" identifier="EX_2"/>
@@ -137,6 +137,11 @@
                         <data>true</data>
                      </feature>
                   </dependency>
+                  <dependency resourceType="Peripheral" resourceId="FTM0" description="Peripheral FTM0 is not initialized" problem_level="1" source="Pins:BOARD_InitPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
                   <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
                      <feature name="enabled" evaluation="equal" configuration="core0">
                         <data>true</data>
@@ -172,11 +177,13 @@
                   <pin peripheral="GPIOD" signal="GPIO, 0" pin_num="4" pin_signal="ADC2_SE0/PTD0/FTM0_CH2/LPSPI1_SCK/FTM2_CH0/FXIO_D0/TRGMUX_OUT1">
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="drive_strength" value="low"/>
                      </pin_features>
                   </pin>
                   <pin peripheral="GPIOD" signal="GPIO, 1" pin_num="3" pin_signal="ADC2_SE1/PTD1/FTM0_CH3/LPSPI1_SIN/FTM2_CH1/FXIO_D1/TRGMUX_OUT2">
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="drive_strength" value="low"/>
                      </pin_features>
                   </pin>
                   <pin peripheral="GPIOD" signal="GPIO, 2" pin_num="71" pin_signal="ADC1_SE2/PTD2/FTM3_CH4/LPSPI1_SOUT/FXIO_D4/TRGMUX_IN5">
@@ -187,6 +194,7 @@
                   <pin peripheral="GPIOD" signal="GPIO, 3" pin_num="70" pin_signal="ADC1_SE3/PTD3/FTM3_CH5/LPSPI1_PCS0/FXIO_D5/TRGMUX_IN4/NMI_b">
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="pull_select" value="down"/>
                      </pin_features>
                   </pin>
                   <pin peripheral="GPIOD" signal="GPIO, 4" pin_num="69" pin_signal="ADC1_SE6/ACMP1_IN6/PTD4/FTM0_FLT3/FTM3_FLT3">
@@ -322,14 +330,9 @@
                         <pin_feature name="gpio_interrupt" value="kPORT_InterruptFallingEdge"/>
                      </pin_features>
                   </pin>
-                  <pin peripheral="GPIOA" signal="GPIO, 8" pin_num="100" pin_signal="PTA8/FXIO_D6/FTM3_FLT3">
-                     <pin_features>
-                        <pin_feature name="direction" value="OUTPUT"/>
-                     </pin_features>
-                  </pin>
                   <pin peripheral="GPIOA" signal="GPIO, 9" pin_num="99" pin_signal="PTA9/FXIO_D7/FTM3_FLT2/FTM1_FLT3">
                      <pin_features>
-                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="direction" value="INPUT"/>
                      </pin_features>
                   </pin>
                   <pin peripheral="GPIOB" signal="GPIO, 14" pin_num="66" pin_signal="ADC1_SE9/ADC2_SE9/PTB14/FTM0_CH2/LPSPI1_SCK">
@@ -354,11 +357,6 @@
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
                         <pin_feature name="gpio_init_state" value="true"/>
-                     </pin_features>
-                  </pin>
-                  <pin peripheral="GPIOC" signal="GPIO, 0" pin_num="40" pin_signal="ADC0_SE8/ACMP1_IN4/PTC0/FTM0_CH0/FTM1_CH6">
-                     <pin_features>
-                        <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
                   </pin>
                   <pin peripheral="GPIOC" signal="GPIO, 1" pin_num="39" pin_signal="ADC0_SE9/ACMP1_IN3/PTC1/FTM0_CH1/FTM1_CH7">
@@ -392,6 +390,16 @@
                      </pin_features>
                   </pin>
                   <pin peripheral="GPIOE" signal="GPIO, 8" pin_num="26" pin_signal="ACMP0_IN3/PTE8/FTM0_CH6">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOA" signal="GPIO, 8" pin_num="100" pin_signal="PTA8/FXIO_D6/FTM3_FLT3">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="FTM0" signal="CH, 0" pin_num="40" pin_signal="ADC0_SE8/ACMP1_IN4/PTC0/FTM0_CH0/FTM1_CH6">
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
@@ -482,8 +490,6 @@
                   <setting id="SCG.DIVSLOW.scale" value="5" locked="false"/>
                   <setting id="SCG.SCSSEL.sel" value="SCG.SIRC" locked="false"/>
                   <setting id="SCG::FIRCCFG[RANGE].bitField" value="BitFieldValue" locked="false"/>
-                  <setting id="SCG::VCCR[DIVCORE].bitField" value="BitFieldValue" locked="false"/>
-                  <setting id="SCG::VCCR[DIVSLOW].bitField" value="BitFieldValue" locked="false"/>
                   <setting id="SCG_FIRCCSR_FIRCEN_CFG" value="Disabled" locked="false"/>
                </clock_settings>
                <called_from_default_init>true</called_from_default_init>

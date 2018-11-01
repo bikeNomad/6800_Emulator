@@ -62,7 +62,7 @@ pin_labels:
 - {pin_num: '65', pin_signal: ADC1_SE14/PTB15/FTM0_CH3/LPSPI1_SIN, label: LED_2, identifier: LED_2}
 - {pin_num: '64', pin_signal: ADC1_SE15/PTB16/FTM0_CH4/LPSPI1_SOUT, label: LED_3, identifier: LED_3}
 - {pin_num: '63', pin_signal: ADC2_SE3/PTB17/FTM0_CH5/LPSPI1_PCS3, label: LED_4, identifier: LED_4}
-- {pin_num: '40', pin_signal: ADC0_SE8/ACMP1_IN4/PTC0/FTM0_CH0/FTM1_CH6, label: EX_5, identifier: EX_5}
+- {pin_num: '40', pin_signal: ADC0_SE8/ACMP1_IN4/PTC0/FTM0_CH0/FTM1_CH6, label: EX_5_E_CLK_OUT, identifier: EX_5}
 - {pin_num: '39', pin_signal: ADC0_SE9/ACMP1_IN3/PTC1/FTM0_CH1/FTM1_CH7, label: EX_4, identifier: EX_4}
 - {pin_num: '30', pin_signal: ADC0_SE10/ACMP0_IN5/XTAL32/PTC2/FTM0_CH2/CAN0_RX, label: EX_3, identifier: EX_3}
 - {pin_num: '29', pin_signal: ADC0_SE11/ACMP0_IN4/EXTAL32/PTC3/FTM0_CH3/CAN0_TX, label: EX_2, identifier: EX_2}
@@ -111,10 +111,10 @@ BOARD_InitPins:
   - {pin_num: '92', peripheral: CoreDebug, signal: TRACE_SWO, pin_signal: PTA10/FTM1_CH4/LPUART0_TX/FXIO_D0/JTAG_TDO/noetm_Trace_SWO}
   - {pin_num: '96', peripheral: CoreDebug, signal: SWD_CLK, pin_signal: ACMP0_IN2/PTC4/FTM1_CH0/RTC_CLKOUT/EWM_IN/FTM1_QD_PHB/JTAG_TCLK/SWD_CLK}
   - {pin_num: '97', peripheral: RCM, signal: RESET, pin_signal: PTA5/TCLK1/JTAG_TRST_b/RESET_b}
-  - {pin_num: '4', peripheral: GPIOD, signal: 'GPIO, 0', pin_signal: ADC2_SE0/PTD0/FTM0_CH2/LPSPI1_SCK/FTM2_CH0/FXIO_D0/TRGMUX_OUT1, direction: OUTPUT}
-  - {pin_num: '3', peripheral: GPIOD, signal: 'GPIO, 1', pin_signal: ADC2_SE1/PTD1/FTM0_CH3/LPSPI1_SIN/FTM2_CH1/FXIO_D1/TRGMUX_OUT2, direction: OUTPUT}
+  - {pin_num: '4', peripheral: GPIOD, signal: 'GPIO, 0', pin_signal: ADC2_SE0/PTD0/FTM0_CH2/LPSPI1_SCK/FTM2_CH0/FXIO_D0/TRGMUX_OUT1, direction: OUTPUT, drive_strength: low}
+  - {pin_num: '3', peripheral: GPIOD, signal: 'GPIO, 1', pin_signal: ADC2_SE1/PTD1/FTM0_CH3/LPSPI1_SIN/FTM2_CH1/FXIO_D1/TRGMUX_OUT2, direction: OUTPUT, drive_strength: low}
   - {pin_num: '71', peripheral: GPIOD, signal: 'GPIO, 2', pin_signal: ADC1_SE2/PTD2/FTM3_CH4/LPSPI1_SOUT/FXIO_D4/TRGMUX_IN5, direction: OUTPUT}
-  - {pin_num: '70', peripheral: GPIOD, signal: 'GPIO, 3', pin_signal: ADC1_SE3/PTD3/FTM3_CH5/LPSPI1_PCS0/FXIO_D5/TRGMUX_IN4/NMI_b, direction: OUTPUT}
+  - {pin_num: '70', peripheral: GPIOD, signal: 'GPIO, 3', pin_signal: ADC1_SE3/PTD3/FTM3_CH5/LPSPI1_PCS0/FXIO_D5/TRGMUX_IN4/NMI_b, direction: OUTPUT, pull_select: down}
   - {pin_num: '69', peripheral: GPIOD, signal: 'GPIO, 4', pin_signal: ADC1_SE6/ACMP1_IN6/PTD4/FTM0_FLT3/FTM3_FLT3, direction: OUTPUT}
   - {pin_num: '33', peripheral: GPIOD, signal: 'GPIO, 5', pin_signal: PTD5/FTM2_CH3/LPTMR0_ALT2/FTM2_FLT1/PWT_IN2/TRGMUX_IN7, direction: OUTPUT}
   - {pin_num: '32', peripheral: GPIOD, signal: 'GPIO, 6', pin_signal: PTD6/LPUART2_RX/FTM2_FLT2, direction: OUTPUT}
@@ -151,13 +151,11 @@ BOARD_InitPins:
   - {pin_num: '79', peripheral: GPIOA, signal: 'GPIO, 0', pin_signal: ADC0_SE0/ACMP0_IN0/PTA0/FTM2_CH1/LPI2C0_SCLS/FXIO_D2/FTM2_QD_PHA/LPUART0_CTS/TRGMUX_OUT3, direction: INPUT,
     gpio_interrupt: kPORT_InterruptFallingEdge}
   - {pin_num: '58', peripheral: GPIOA, signal: 'GPIO, 6', pin_signal: ADC0_SE2/ACMP1_IN0/PTA6/FTM0_FLT1/LPSPI1_PCS1/LPUART1_CTS, direction: INPUT, gpio_interrupt: kPORT_InterruptFallingEdge}
-  - {pin_num: '100', peripheral: GPIOA, signal: 'GPIO, 8', pin_signal: PTA8/FXIO_D6/FTM3_FLT3, direction: OUTPUT}
-  - {pin_num: '99', peripheral: GPIOA, signal: 'GPIO, 9', pin_signal: PTA9/FXIO_D7/FTM3_FLT2/FTM1_FLT3, direction: OUTPUT}
+  - {pin_num: '99', peripheral: GPIOA, signal: 'GPIO, 9', pin_signal: PTA9/FXIO_D7/FTM3_FLT2/FTM1_FLT3, direction: INPUT}
   - {pin_num: '66', peripheral: GPIOB, signal: 'GPIO, 14', pin_signal: ADC1_SE9/ADC2_SE9/PTB14/FTM0_CH2/LPSPI1_SCK, direction: OUTPUT, gpio_init_state: 'true'}
   - {pin_num: '65', peripheral: GPIOB, signal: 'GPIO, 15', pin_signal: ADC1_SE14/PTB15/FTM0_CH3/LPSPI1_SIN, direction: OUTPUT, gpio_init_state: 'true'}
   - {pin_num: '63', peripheral: GPIOB, signal: 'GPIO, 17', pin_signal: ADC2_SE3/PTB17/FTM0_CH5/LPSPI1_PCS3, direction: OUTPUT, gpio_init_state: 'true'}
   - {pin_num: '64', peripheral: GPIOB, signal: 'GPIO, 16', pin_signal: ADC1_SE15/PTB16/FTM0_CH4/LPSPI1_SOUT, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: '40', peripheral: GPIOC, signal: 'GPIO, 0', pin_signal: ADC0_SE8/ACMP1_IN4/PTC0/FTM0_CH0/FTM1_CH6, direction: OUTPUT}
   - {pin_num: '39', peripheral: GPIOC, signal: 'GPIO, 1', pin_signal: ADC0_SE9/ACMP1_IN3/PTC1/FTM0_CH1/FTM1_CH7, direction: OUTPUT}
   - {pin_num: '30', peripheral: GPIOC, signal: 'GPIO, 2', pin_signal: ADC0_SE10/ACMP0_IN5/XTAL32/PTC2/FTM0_CH2/CAN0_RX, direction: OUTPUT}
   - {pin_num: '29', peripheral: GPIOC, signal: 'GPIO, 3', pin_signal: ADC0_SE11/ACMP0_IN4/EXTAL32/PTC3/FTM0_CH3/CAN0_TX, direction: OUTPUT}
@@ -165,6 +163,8 @@ BOARD_InitPins:
   - {pin_num: '44', peripheral: GPIOC, signal: 'GPIO, 16', pin_signal: ADC0_SE14/PTC16/FTM1_FLT2/LPI2C1_SDAS, direction: OUTPUT}
   - {pin_num: '43', peripheral: GPIOC, signal: 'GPIO, 17', pin_signal: ADC0_SE15/PTC17/FTM1_FLT3/LPI2C1_SCLS, direction: OUTPUT}
   - {pin_num: '26', peripheral: GPIOE, signal: 'GPIO, 8', pin_signal: ACMP0_IN3/PTE8/FTM0_CH6, direction: OUTPUT}
+  - {pin_num: '100', peripheral: GPIOA, signal: 'GPIO, 8', pin_signal: PTA8/FXIO_D6/FTM3_FLT3, direction: INPUT}
+  - {pin_num: '40', peripheral: FTM0, signal: 'CH, 0', pin_signal: ADC0_SE8/ACMP1_IN4/PTC0/FTM0_CH0/FTM1_CH6, direction: OUTPUT}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 /* clang-format on */
@@ -203,14 +203,14 @@ void BOARD_InitPins(void)
     GPIO_PinInit(BOARD_INITPINS_MCU_IRQ_GPIO, BOARD_INITPINS_MCU_IRQ_PIN, &MCU_IRQ_config);
 
     gpio_pin_config_t MCU_E_config = {
-        .pinDirection = kGPIO_DigitalOutput,
+        .pinDirection = kGPIO_DigitalInput,
         .outputLogic = 0U
     };
     /* Initialize GPIO functionality on pin PTA8 (pin 100)  */
     GPIO_PinInit(BOARD_INITPINS_MCU_E_GPIO, BOARD_INITPINS_MCU_E_PIN, &MCU_E_config);
 
     gpio_pin_config_t MCU_RESET_config = {
-        .pinDirection = kGPIO_DigitalOutput,
+        .pinDirection = kGPIO_DigitalInput,
         .outputLogic = 0U
     };
     /* Initialize GPIO functionality on pin PTA9 (pin 99)  */
@@ -299,13 +299,6 @@ void BOARD_InitPins(void)
     };
     /* Initialize GPIO functionality on pin PTB17 (pin 63)  */
     GPIO_PinInit(BOARD_INITPINS_LED_4_GPIO, BOARD_INITPINS_LED_4_PIN, &LED_4_config);
-
-    gpio_pin_config_t EX_5_config = {
-        .pinDirection = kGPIO_DigitalOutput,
-        .outputLogic = 0U
-    };
-    /* Initialize GPIO functionality on pin PTC0 (pin 40)  */
-    GPIO_PinInit(BOARD_INITPINS_EX_5_GPIO, BOARD_INITPINS_EX_5_PIN, &EX_5_config);
 
     gpio_pin_config_t EX_4_config = {
         .pinDirection = kGPIO_DigitalOutput,
@@ -563,8 +556,8 @@ void BOARD_InitPins(void)
     /* PORTB7 (pin 15) is configured as PTB7 */
     PORT_SetPinMux(BOARD_INITPINS_MCU_D7_PORT, BOARD_INITPINS_MCU_D7_PIN, kPORT_MuxAsGpio);
 
-    /* PORTC0 (pin 40) is configured as PTC0 */
-    PORT_SetPinMux(BOARD_INITPINS_EX_5_PORT, BOARD_INITPINS_EX_5_PIN, kPORT_MuxAsGpio);
+    /* PORTC0 (pin 40) is configured as FTM0_CH0 */
+    PORT_SetPinMux(BOARD_INITPINS_EX_5_PORT, BOARD_INITPINS_EX_5_PIN, kPORT_MuxAlt2);
 
     /* PORTC1 (pin 39) is configured as PTC1 */
     PORT_SetPinMux(BOARD_INITPINS_EX_4_PORT, BOARD_INITPINS_EX_4_PIN, kPORT_MuxAsGpio);
@@ -596,8 +589,24 @@ void BOARD_InitPins(void)
     /* PORTD0 (pin 4) is configured as PTD0 */
     PORT_SetPinMux(BOARD_INITPINS_MCU_A0_PORT, BOARD_INITPINS_MCU_A0_PIN, kPORT_MuxAsGpio);
 
+    PORTD->PCR[0] = ((PORTD->PCR[0] &
+                      /* Mask bits to zero which are setting */
+                      (~(PORT_PCR_DSE_MASK | PORT_PCR_ISF_MASK)))
+
+                     /* Drive Strength Enable: Low drive strength is configured on the corresponding pin, if pin
+                      * is configured as a digital output. */
+                     | PORT_PCR_DSE(kPORT_LowDriveStrength));
+
     /* PORTD1 (pin 3) is configured as PTD1 */
     PORT_SetPinMux(BOARD_INITPINS_MCU_A1_PORT, BOARD_INITPINS_MCU_A1_PIN, kPORT_MuxAsGpio);
+
+    PORTD->PCR[1] = ((PORTD->PCR[1] &
+                      /* Mask bits to zero which are setting */
+                      (~(PORT_PCR_DSE_MASK | PORT_PCR_ISF_MASK)))
+
+                     /* Drive Strength Enable: Low drive strength is configured on the corresponding pin, if pin
+                      * is configured as a digital output. */
+                     | PORT_PCR_DSE(kPORT_LowDriveStrength));
 
     /* PORTD10 (pin 36) is configured as PTD10 */
     PORT_SetPinMux(BOARD_INITPINS_MCU_A10_PORT, BOARD_INITPINS_MCU_A10_PIN, kPORT_MuxAsGpio);
@@ -628,6 +637,14 @@ void BOARD_InitPins(void)
 
     /* PORTD3 (pin 70) is configured as PTD3 */
     PORT_SetPinMux(BOARD_INITPINS_MCU_A3_PORT, BOARD_INITPINS_MCU_A3_PIN, kPORT_MuxAsGpio);
+
+    PORTD->PCR[3] = ((PORTD->PCR[3] &
+                      /* Mask bits to zero which are setting */
+                      (~(PORT_PCR_PS_MASK | PORT_PCR_ISF_MASK)))
+
+                     /* Pull Select: Internal pulldown resistor is enabled on the corresponding pin, if the
+                      * corresponding PE field is set. */
+                     | PORT_PCR_PS(kPORT_PullDown));
 
     /* PORTD4 (pin 69) is configured as PTD4 */
     PORT_SetPinMux(BOARD_INITPINS_MCU_A4_PORT, BOARD_INITPINS_MCU_A4_PIN, kPORT_MuxAsGpio);

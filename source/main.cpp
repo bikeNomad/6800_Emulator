@@ -196,9 +196,8 @@ int main(void) {
     BOARD_InitBootPins();
     BOARD_InitBootClocks();	// slow clock
     BOARD_FastClock();
-    BOARD_InitBootPeripherals();
-  	/* Init FSL debug console. */
-    BOARD_InitDebugConsole();
+    BOARD_InitBootPeripherals();	// set up E clk on EX_5
+    BOARD_InitDebugConsole();  	/* Init FSL debug console. */
 
     PRINTF("Extern ROM CRCs:\r\n");
     crcRoms();

@@ -43,10 +43,10 @@
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.undef.1875388134" name="Undefined symbols (-U)" superClass="gnu.cpp.compiler.option.preprocessor.undef" useByScannerDiscovery="false"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1051108421" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="../source/emulator/m6800"/>
-									<listOptionValue builtIn="false" value="../source/emulator"/>
 									<listOptionValue builtIn="false" value="../CMSIS"/>
 									<listOptionValue builtIn="false" value="../drivers"/>
+									<listOptionValue builtIn="false" value="../source/emulator/m6800"/>
+									<listOptionValue builtIn="false" value="../source/emulator"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
 									<listOptionValue builtIn="false" value="../board"/>
 									<listOptionValue builtIn="false" value="../source"/>
@@ -105,10 +105,10 @@
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.undef.symbol.520399275" name="Undefined symbols (-U)" superClass="gnu.c.compiler.option.preprocessor.undef.symbol" useByScannerDiscovery="false"/>
 								<option id="gnu.c.compiler.option.include.paths.1027296372" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="../source/emulator"/>
-									<listOptionValue builtIn="false" value="../source/emulator/m6800"/>
 									<listOptionValue builtIn="false" value="../CMSIS"/>
 									<listOptionValue builtIn="false" value="../drivers"/>
+									<listOptionValue builtIn="false" value="../source/emulator/m6800"/>
+									<listOptionValue builtIn="false" value="../source/emulator"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
 									<listOptionValue builtIn="false" value="../board"/>
 									<listOptionValue builtIn="false" value="../source"/>
@@ -152,18 +152,20 @@
 								<option id="gnu.both.asm.option.include.paths.1764895923" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../CMSIS"/>
 									<listOptionValue builtIn="false" value="../drivers"/>
+									<listOptionValue builtIn="false" value="../source/emulator/m6800"/>
+									<listOptionValue builtIn="false" value="../source/emulator"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
 									<listOptionValue builtIn="false" value="../board"/>
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/arm-none-eabi"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/backward"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/lib/gcc/arm-none-eabi/7.2.1/include"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/lib/gcc/arm-none-eabi/7.2.1/include-fixed"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 								</option>
 								<option id="gnu.both.asm.option.warnings.nowarn.415839016" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" useByScannerDiscovery="false"/>
 								<option id="gnu.both.asm.option.version.1879560836" name="Announce version (-v)" superClass="gnu.both.asm.option.version" useByScannerDiscovery="false"/>
@@ -278,9 +280,9 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="drivers"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="CMSIS"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="board"/>
-						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="drivers"/>
 						<entry excluding="emulator" flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="source"/>
 						<entry excluding="mamedbg.c|m6800/6800dasm.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/emulator"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="startup"/>
@@ -332,18 +334,20 @@
 								<option id="gnu.cpp.compiler.option.include.paths.275816781" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="../CMSIS"/>
 									<listOptionValue builtIn="false" value="../drivers"/>
+									<listOptionValue builtIn="false" value="../source/emulator/m6800"/>
+									<listOptionValue builtIn="false" value="../source/emulator"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
 									<listOptionValue builtIn="false" value="../board"/>
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/arm-none-eabi"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/backward"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/lib/gcc/arm-none-eabi/7.2.1/include"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/lib/gcc/arm-none-eabi/7.2.1/include-fixed"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.include.files.971998645" name="Include files (-include)" superClass="gnu.cpp.compiler.option.include.files"/>
 								<option id="gnu.cpp.compiler.option.optimization.flags.1928664064" name="Other optimization flags" superClass="gnu.cpp.compiler.option.optimization.flags" value="-fno-common" valueType="string"/>
@@ -397,18 +401,20 @@
 								<option id="gnu.c.compiler.option.include.paths.1510410480" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="../CMSIS"/>
 									<listOptionValue builtIn="false" value="../drivers"/>
+									<listOptionValue builtIn="false" value="../source/emulator/m6800"/>
+									<listOptionValue builtIn="false" value="../source/emulator"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
 									<listOptionValue builtIn="false" value="../board"/>
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/arm-none-eabi"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/backward"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/lib/gcc/arm-none-eabi/7.2.1/include"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/lib/gcc/arm-none-eabi/7.2.1/include-fixed"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.files.1341087835" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files"/>
 								<option id="gnu.c.compiler.option.optimization.flags.873385877" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" value="-fno-common" valueType="string"/>
@@ -447,18 +453,20 @@
 								<option id="gnu.both.asm.option.include.paths.947685389" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="../CMSIS"/>
 									<listOptionValue builtIn="false" value="../drivers"/>
+									<listOptionValue builtIn="false" value="../source/emulator/m6800"/>
+									<listOptionValue builtIn="false" value="../source/emulator"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
 									<listOptionValue builtIn="false" value="../board"/>
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../startup"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/arm-none-eabi"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include/c++/7.2.1/backward"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/lib/gcc/arm-none-eabi/7.2.1/include"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/lib/gcc/arm-none-eabi/7.2.1/include-fixed"/>
 									<listOptionValue builtIn="false" value="/Applications/MCUXpressoIDE_10.2.1_795/ide/tools/arm-none-eabi/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/emulator}&quot;"/>
 								</option>
 								<option id="gnu.both.asm.option.warnings.nowarn.1795977444" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn"/>
 								<option id="gnu.both.asm.option.version.54397536" name="Announce version (-v)" superClass="gnu.both.asm.option.version"/>
@@ -573,9 +581,9 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="drivers"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="CMSIS"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="board"/>
-						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="drivers"/>
 						<entry excluding="emulator" flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="source"/>
 						<entry excluding="mamedbg.c|m6800/6800dasm.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/emulator"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="startup"/>
@@ -615,7 +623,10 @@
 		<projectStorage>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;TargetConfig&gt;
 &lt;Properties property_3="NXP" property_4="MKE18F512xxx16" property_count="5" version="100200"/&gt;
-&lt;infoList vendor="NXP"&gt;&lt;info chip="MKE18F512xxx16" name="MKE18F512xxx16"&gt;&lt;chip&gt;&lt;name&gt;MKE18F512xxx16&lt;/name&gt;
+&lt;infoList vendor="NXP"&gt;
+&lt;info chip="MKE18F512xxx16" name="MKE18F512xxx16"&gt;
+&lt;chip&gt;
+&lt;name&gt;MKE18F512xxx16&lt;/name&gt;
 &lt;family&gt;KE1x&lt;/family&gt;
 &lt;vendor&gt;NXP&lt;/vendor&gt;
 &lt;memory can_program="true" id="Flash" is_ro="true" size="512" type="Flash"/&gt;
@@ -688,7 +699,8 @@
 &lt;peripheralInstance derived_from="MCM" determined="infoFile" id="MCM" location="0xE0080000"/&gt;
 &lt;peripheralInstance derived_from="LMEM" determined="infoFile" id="LMEM" location="0xE0082000"/&gt;
 &lt;/chip&gt;
-&lt;processor&gt;&lt;name gcc_name="cortex-m4"&gt;Cortex-M4&lt;/name&gt;
+&lt;processor&gt;
+&lt;name gcc_name="cortex-m4"&gt;Cortex-M4&lt;/name&gt;
 &lt;family&gt;Cortex-M&lt;/family&gt;
 &lt;/processor&gt;
 &lt;link href="MKE18F16_internal_peripheral.xml" show="embed" type="simple"/&gt;
@@ -699,7 +711,7 @@
 	<storageModule moduleId="com.nxp.mcuxpresso.core.datamodels">
 		<sdkName>SDK_2.x_MKE18F512xxx16</sdkName>
 		<sdkVersion>2.4.1</sdkVersion>
-		<sdkComponents>middleware.baremetal.MKE18F16;platform.drivers.clock.MKE18F16;platform.Include_common.MKE18F16;platform.Include_core_cm4.MKE18F16;platform.devices.MKE18F16_CMSIS.MKE18F16;platform.drivers.common.MKE18F16;platform.drivers.flash.MKE18F16;platform.drivers.gpio.MKE18F16;platform.drivers.lpuart.MKE18F16;platform.drivers.port.MKE18F16;platform.drivers.smc.MKE18F16;platform.drivers.trgmux.MKE18F16;platform.drivers.crc.MKE18F16;platform.drivers.dac32.MKE18F16;platform.utilities.debug_console.MKE18F16;platform.utilities.shell.MKE18F16;platform.devices.MKE18F16_startup.MKE18F16;project_template.twrke18f.MKE18F16;</sdkComponents>
+		<sdkComponents>middleware.baremetal.MKE18F16;platform.drivers.clock.MKE18F16;platform.Include_common.MKE18F16;platform.Include_core_cm4.MKE18F16;platform.devices.MKE18F16_CMSIS.MKE18F16;platform.drivers.common.MKE18F16;platform.drivers.flash.MKE18F16;platform.drivers.gpio.MKE18F16;platform.drivers.lpuart.MKE18F16;platform.drivers.port.MKE18F16;platform.drivers.smc.MKE18F16;platform.drivers.trgmux.MKE18F16;platform.drivers.crc.MKE18F16;platform.drivers.dac32.MKE18F16;platform.utilities.debug_console.MKE18F16;platform.utilities.shell.MKE18F16;platform.devices.MKE18F16_startup.MKE18F16;project_template.twrke18f.MKE18F16;platform.drivers.ftm.MKE18F16;</sdkComponents>
 		<boardId>twrke18f</boardId>
 		<package>MKE18F512VLL16</package>
 		<core>cm4</core>
