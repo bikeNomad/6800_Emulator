@@ -165,25 +165,30 @@ void startShell() {
 	        (char *)&prompt[0]);
 
 	// CS start end -- print ROM checksum
-	char csHelp[] = "\r\ncs start end -- print ROM checksum\r\n";
-	shell_command_context_t csCmdContext {"cs", &csHelp[0],
+	shell_command_context_t csCmdContext {
+		"cs",
+		"\r\ncs start end -- print ROM checksum\r\n",
 		&handleChecksumCommand, static_cast<uint8_t>(2) };
 	SHELL_RegisterCommand(&csCmdContext);
 
 	// EX nInstructions -- execute instructions
-	char exHelp[] = "\r\nex nInstructions -- execute instructions\r\n";
-	shell_command_context_t exCmdContext {"ex", &exHelp[0],
+	shell_command_context_t exCmdContext {
+		"ex",
+		"\r\nex nInstructions -- execute instructions\r\n",
 		&handleExecuteCommand, static_cast<uint8_t>(1) };
 	SHELL_RegisterCommand(&exCmdContext);
 
-	char hdHelp[] = "\r\nhd addr count -- hex dump\r\n";
-	shell_command_context_t hdCmdContext {"hd", &hdHelp[0],
-		&handleHexDumpCommand, static_cast<uint8_t>(2) };
+	// HD address count -- hex dump memory
+	shell_command_context_t hdCmdContext {
+		"hd",
+		"\r\nhd addr count -- hex dump\r\n",
+		&handleHexDumpCommand, 2 };
 	SHELL_RegisterCommand(&hdCmdContext);
 
 	SHELL_Main(&shellContext);
 }
 
+// TODO(nk): get disassembler working. Stub for now:
 unsigned int Dasm680x(int, char *, unsigned int) { return 0; }
 
 int main(void) {
