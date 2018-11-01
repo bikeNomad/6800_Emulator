@@ -16,7 +16,7 @@ extern int m6800_ICount;
 
 /* PUBLIC FUNCTIONS */
 void m6800_init(void);
-void m6800_reset(void *param);
+void m6800_reset(void);
 void m6800_exit(void);
 int	m6800_execute(int cycles);
 unsigned m6800_get_context(void *dst);

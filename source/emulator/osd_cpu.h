@@ -46,6 +46,8 @@ typedef signed   short     INT16;
 typedef signed   int       INT32;
 #endif
 
+#define LSB_FIRST 1
+
 #else
 #include "X11/Xmd.h"
 #endif

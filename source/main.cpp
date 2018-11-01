@@ -75,7 +75,7 @@ uint32_t GetCrc32(uint16_t extAddressBase, uint16_t nBytes) {
 	CRC_Type *base = CRC0;
 	InitCrc32(base, 0xFFFFFFFFU);
 	for (uint32_t address = extAddressBase; nBytes-- > 0; address++) {
-		uint8_t byte = cpu_readmem_external(address);
+		uint8_t byte = cpu_readmem16(address);	// external or internal
 		CRC_WriteData(base, &byte, 1);
 	}
 	return CRC_Get32bitResult(base);
@@ -138,6 +138,22 @@ static int32_t handleExecuteCommand(p_shell_context_t context, int32_t argc, cha
 	return 0;
 }
 
+static int32_t handleHexDumpCommand(p_shell_context_t context, int32_t argc, char **argv) {
+	char *endptr = 0;
+	unsigned long startAddress = strtoul(argv[1], &endptr, 0);
+	if (*endptr || startAddress > 0xFFFFUL) { return -1; }
+	unsigned long numBytes = strtoul(argv[2], &endptr, 0);
+	if (*endptr || !numBytes || startAddress + numBytes > 0x10000) { return -1; }
+	uint16_t bytesPrinted = 0;
+	for (uint16_t addr = startAddress; bytesPrinted < numBytes; bytesPrinted++, addr++) {
+		if (bytesPrinted % 16 == 0) { PRINTF("\r\n"); }
+		PRINTF("%02x ", cpu_readmem16(addr));
+	}
+	PRINTF("\r\n");
+
+	return 0;
+}
+
 void startShell() {
 	static shell_context_struct shellContext;
 	const char prompt[] = "> ";
@@ -149,23 +165,26 @@ void startShell() {
 	        (char *)&prompt[0]);
 
 	// CS start end -- print ROM checksum
-	const char csCmd[] = "cs";
 	char csHelp[] = "\r\ncs start end -- print ROM checksum\r\n";
-	shell_command_context_t csCmdContext {&csCmd[0], &csHelp[0], &handleChecksumCommand, static_cast<uint8_t>(2) };
+	shell_command_context_t csCmdContext {"cs", &csHelp[0],
+		&handleChecksumCommand, static_cast<uint8_t>(2) };
 	SHELL_RegisterCommand(&csCmdContext);
 
 	// EX nInstructions -- execute instructions
-	const char exCmd[] = "ex";
 	char exHelp[] = "\r\nex nInstructions -- execute instructions\r\n";
-	shell_command_context_t exCmdContext {&exCmd[0], &exHelp[0], &handleExecuteCommand, static_cast<uint8_t>(1) };
+	shell_command_context_t exCmdContext {"ex", &exHelp[0],
+		&handleExecuteCommand, static_cast<uint8_t>(1) };
 	SHELL_RegisterCommand(&exCmdContext);
+
+	char hdHelp[] = "\r\nhd addr count -- hex dump\r\n";
+	shell_command_context_t hdCmdContext {"hd", &hdHelp[0],
+		&handleHexDumpCommand, static_cast<uint8_t>(2) };
+	SHELL_RegisterCommand(&hdCmdContext);
 
 	SHELL_Main(&shellContext);
 }
 
-void logerror(char const*, ...) { }
 unsigned int Dasm680x(int, char *, unsigned int) { return 0; }
-
 
 int main(void) {
   	/* Init board hardware. */
@@ -176,7 +195,17 @@ int main(void) {
   	/* Init FSL debug console. */
     BOARD_InitDebugConsole();
 
+    PRINTF("Extern ROM CRCs:\r\n");
     crcRoms();
+
+    PRINTF("Copying ROM to RAM\r\n");
+    copyRomsToRam();
+
+    PRINTF("Intern ROM CRCs:\r\n");
+    crcRoms();
+
+    m6800_init();
+    m6800_reset();
 
     while (1) {
         startShell();

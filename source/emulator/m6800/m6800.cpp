@@ -323,13 +323,13 @@ static void ENTER_INTERRUPT(const char *message,UINT16 irq_vector)
  * Reset registers to their initial values
  ****************************************************************************/
 
-void m6800_init(void)
+void m6800_init()
 {
 	m6800.insn = m6800_insn;
 	m6800.cycles = cycles_6800;
 }
 
-void m6800_reset(void *param)
+void m6800_reset()
 {
 	SEI;				/* IRQ disabled */
 	PCD = RM16( 0xfffe );
@@ -458,6 +458,8 @@ void m6800_set_irq_callback(int (*callback)(int irqline))
 {
 	m6800.irq_callback = callback;
 }
+
+INLINE uint32_t readInterruptLines() { return BOARD_IRQ_GPIO->PDIR & (BOARD_IRQ_MASK | BOARD_NMI_MASK); }
 
 /****************************************************************************
  * Execute cycles CPU cycles. Return number of cycles really executed
@@ -753,7 +755,7 @@ int m6800_execute(int cycles)
 				case 0xff: stx_ex(); break;
 			}
 		}
-	} while( m6800_ICount>0 );
+	} while( --m6800_ICount>0 );
 	m6800.extra_cycles = 0;
 
 	return cycles - m6800_ICount;
@@ -807,7 +809,7 @@ void m6808_init(void)
 	m6800.cycles = cycles_6800;
 }
 
-void m6808_reset(void *param) { m6800_reset(param); }
+void m6808_reset() { m6800_reset(); }
 void m6808_exit(void) { m6800_exit(); }
 int  m6808_execute(int cycles) { return m6800_execute(cycles); }
 unsigned m6808_get_context(void *dst) { return m6800_get_context(dst); }

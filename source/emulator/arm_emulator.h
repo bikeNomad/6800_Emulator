@@ -49,7 +49,6 @@
 #define BOARD_IRQ_MASK (1U << BOARD_INITPINS_MCU_IRQ_PIN)
 #define BOARD_NMI_MASK (1U << BOARD_INITPINS_MCU_NMI_PIN)
 
-INLINE uint32_t readInterruptLines() { return BOARD_IRQ_GPIO->PDIR; }
 
 // PDDR bits=1: output
 // remember high 4 bits are LED outputs
@@ -134,8 +133,8 @@ enum MemoryRangeIndex {
 	CMOS_RAM_INDEX,
 #endif
 	PIA_INDEX,
-	ROM_1_INDEX,
 	ROM_2_INDEX,
+	ROM_1_INDEX,
 	NUM_MEMORY_RANGES
 };
 
@@ -286,3 +285,8 @@ INLINE uint8_t cpu_readop(uint16_t addr) { return cpu_read_rom_internal(addr); }
 INLINE uint8_t cpu_readop_arg(uint16_t addr) { return cpu_readop(addr); }
 
 void logerror(const char *text, ...);
+
+void copyExternalToInternal(uint16_t extStart, uint16_t size);
+
+void copyRomsToRam();
+
