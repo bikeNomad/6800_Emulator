@@ -203,25 +203,26 @@ INLINE void cpu_writemem_internal(MemoryRange const * range, uint16_t addr, uint
 }
 
 static inline void waitForElow() {
-	while (!(BOARD_E_GPIO->PDIR & BOARD_E_MASK)) { /* spin until E high */ }
 	while (BOARD_E_GPIO->PDIR & BOARD_E_MASK) { /* spin until E low */ }
 }
 
 static inline void waitForEhigh() {
-	while (BOARD_E_GPIO->PDIR & BOARD_E_MASK) { /* spin until E low */ }
 	while (!(BOARD_E_GPIO->PDIR & BOARD_E_MASK)) { /* spin until E high */ }
 }
 
-static inline void delayLoop(uint32_t delay) {
-	uint32_t volatile i = delay;
-	while (i-- != 0) {
-		;
-	}
+// FTM0->CNT: 0x00..0x20
+// each count is 1.1usec/33 = 33nsec
+// read data setup time >= 100ns
+// E goes low when CNT == 0x10
+static inline void waitForEalmostLow() {
+	while (FTM0->CNT < (0x10 - 3)) { /* spin */ }
 }
 
 INLINE uint8_t cpu_readmem_external(uint16_t addr) {
 	setExtOut8();	// DEBUG
 
+	// sync with leading edge of E:
+	waitForEhigh();
 	waitForElow();
 
 	// output addr | R | VMA
@@ -229,12 +230,14 @@ INLINE uint8_t cpu_readmem_external(uint16_t addr) {
 	// set D0-D7 to inputs
 	BOARD_DATA_GPIO->PDDR = BOARD_DATA_INPUT_DIR;
 
-	waitForEhigh();
+	waitForEhigh();	// FTM0->CNT just overflowed to 0
 
-	waitForElow();
+	waitForEalmostLow();
 
 	// sample data lines
 	uint8_t retval = BOARD_DATA_GPIO->PDIR & BOARD_DATA_MASK;
+
+	waitForElow();
 
 	// 20ns hold time?
 	// drive VMA low
@@ -247,6 +250,8 @@ INLINE uint8_t cpu_readmem_external(uint16_t addr) {
 INLINE void cpu_writemem_external(uint16_t addr, uint8_t value) {
 	setExtOut8();	// DEBUG
 
+	// sync with leading edge of E:
+	waitForEhigh();
 	waitForElow();
 
 	// output addr | R | VMA
@@ -256,7 +261,7 @@ INLINE void cpu_writemem_external(uint16_t addr, uint8_t value) {
 	// output data value
 	BOARD_DATA_GPIO->PDOR = (BOARD_DATA_GPIO->PDIR & 0xF000);
 
-	waitForEhigh();
+	waitForEhigh();	// FTM0->CNT just overflowed to 0
 
 	waitForElow();
 
