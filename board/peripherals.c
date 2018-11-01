@@ -46,12 +46,15 @@ product: Peripherals v1.0
  * BOARD_InitBootPeripherals function
  * Set up E clock as PWM output from FTM0_CH0 on EX_5 pin (jumper to MCU_E)
  ******************************************************************************/
+
+// TODO(nk): clock source is not being set to FIRCDIV1(CLKS=2); it's at CLKS=1
+#define FTM_SOURCE_CLOCK (CLOCK_GetFreq(kCLOCK_ScgFircAsyncDiv1Clk))
+
 void BOARD_InitBootPeripherals(void)
 {
 	ftm_config_t config;
 	FTM_GetDefaultConfig(&config);
-	config.prescale = kFTM_Prescale_Divide_1;	// 30MHz
-	config.bdmMode = kFTM_BdmMode_0;	// FTM counter stopped
+	config.prescale = kFTM_Prescale_Divide_1;
 	FTM_Init(FTM0, &config);
 
 	ftm_chnl_pwm_signal_param_t ftmParam = {
@@ -60,7 +63,7 @@ void BOARD_InitBootPeripherals(void)
 			.firstEdgeDelayPercent = 0,
 			.level = kFTM_HighTrue
 	};
-	FTM_SetupPwm(FTM0, &ftmParam, 1, kFTM_EdgeAlignedPwm, 894886U, 30000000U);	// approx. /33
+	FTM_SetupPwm(FTM0, &ftmParam, 1, kFTM_EdgeAlignedPwm, 894886U, FTM_SOURCE_CLOCK);	// approx. /33
 
-    FTM_StartTimer(FTM0, kFTM_SystemClock);
+    FTM_StartTimer(FTM0, kFTM_FixedClock);	// use FIRCDIV1
 }
