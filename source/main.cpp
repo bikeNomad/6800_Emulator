@@ -49,6 +49,7 @@
 
 #include "arm_emulator.h"
 #include "m6800.h"
+#include "pia.h"
 
 /*!
  * @brief Init for CRC-32.

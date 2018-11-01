@@ -21,6 +21,9 @@
 #pragma once
 
 #include <stdint.h>
+#include "board.h"
+#include "peripherals.h"
+#include "pin_mux.h"
 
 /* ----- typedefs for data and offset types ----- */
 
@@ -34,21 +37,29 @@
 
 #define BOARD_ADDR_GPIO BOARD_INITPINS_MCU_A0_GPIO
 #define BOARD_ADDR_PORT BOARD_INITPINS_MCU_A0_PORT
+#define BOARD_ADDR_MASK 0xFFFF
 
-#define BOARD_VMA_MASK (1U << BOARD_INITPINS_MCU_VMA_PIN)
-#define BOARD_RW_MASK  (1U << BOARD_INITPINS_MCU_RW_PIN)
+// PORTA: MCU_NMI, MCU_RESET, MCU_IRQ, MCU_E
+#define BOARD_IRQ_GPIO BOARD_INITPINS_MCU_IRQ_GPIO
+#define BOARD_IRQ_PORT BOARD_INITPINS_MCU_IRQ_PORT
 
-#define BOARD_LED_MASK  (0x000FU << BOARD_INITPINS_LED_1_PIN)
-#define BOARD_LED_SHIFT (0x0001U << BOARD_INITPINS_LED_1_PIN)
+#define BOARD_E_GPIO BOARD_INITPINS_MCU_E_GPIO
+#define BOARD_E_PORT BOARD_INITPINS_MCU_E_PORT
+
+// PORTA pins
+#define BOARD_IRQ_MASK (1U << BOARD_INITPINS_MCU_IRQ_PIN)	/* input active low */
+#define BOARD_NMI_MASK (1U << BOARD_INITPINS_MCU_NMI_PIN)	/* input active low */
+#define BOARD_VMA_MASK (1U << BOARD_INITPINS_MCU_VMA_PIN)	/* output */
+#define BOARD_RW_MASK  (1U << BOARD_INITPINS_MCU_RW_PIN)	/* output: low=write */
+#define BOARD_E_MASK 	(1U << BOARD_INITPINS_MCU_E_PIN)	/* input; should jumper to EX_5 */
+#define BOARD_RESET_MASK (1U << BOARD_INITPINS_MCU_RESET_PIN)	/* input: low=reset */
 
 #define BOARD_READ_RW_MASK BOARD_RW_MASK
 #define BOARD_WRITE_RW_MASK 0U
 
-#define BOARD_IRQ_GPIO BOARD_INITPINS_MCU_IRQ_GPIO
-#define BOARD_IRQ_PORT BOARD_INITPINS_MCU_IRQ_PORT
-#define BOARD_IRQ_MASK (1U << BOARD_INITPINS_MCU_IRQ_PIN)
-#define BOARD_NMI_MASK (1U << BOARD_INITPINS_MCU_NMI_PIN)
-
+// PORTB pins
+#define BOARD_LED_MASK  (0x000FU << BOARD_INITPINS_LED_1_PIN)
+#define BOARD_LED_SHIFT (0x0001U << BOARD_INITPINS_LED_1_PIN)
 
 // PDDR bits=1: output
 // remember high 4 bits are LED outputs
@@ -167,6 +178,8 @@ extern RomRange romRanges[];
 
 extern MemoryRange memoryRanges[NUM_MEMORY_RANGES];
 
+static_assert(ROM_1_BASE > ROM_2_BASE, "roms out of order");
+
 constexpr MemoryRange const* findMemoryRange(uint16_t addr) {
 	if (addr > ROM_1_BASE) { return memoryRanges+ROM_1_INDEX; }
 	if (addr > ROM_2_BASE) { return memoryRanges+ROM_2_INDEX; }
@@ -180,8 +193,6 @@ constexpr MemoryRange const* findMemoryRange(uint16_t addr) {
 INLINE uint8_t cpu_readmem_internal(MemoryRange const * range, uint16_t addr) {
 	return *(uint8_t const *)(range->internalAddress + (addr - range->baseAddress));
 }
-
-static_assert(ROM_1_BASE > ROM_2_BASE, "roms out of order");
 
 INLINE uint8_t cpu_read_rom_internal(uint16_t addr) {
 	if (addr > ROM_1_BASE) {
@@ -198,6 +209,16 @@ INLINE void cpu_writemem_internal(MemoryRange const * range, uint16_t addr, uint
 	*(uint8_t *)(range->internalAddress + (addr - range->baseAddress)) = value;
 }
 
+static inline void waitForElow() {
+	while (!(BOARD_E_GPIO->PDIR & BOARD_E_MASK)) { /* spin until E high */ }
+	while (BOARD_E_GPIO->PDIR & BOARD_E_MASK) { /* spin until E low */ }
+}
+
+static inline void waitForEhigh() {
+	while (BOARD_E_GPIO->PDIR & BOARD_E_MASK) { /* spin until E low */ }
+	while (!(BOARD_E_GPIO->PDIR & BOARD_E_MASK)) { /* spin until E high */ }
+}
+
 static inline void delayLoop(uint32_t delay) {
 	uint32_t volatile i = delay;
 	while (i-- != 0) {
@@ -206,31 +227,21 @@ static inline void delayLoop(uint32_t delay) {
 }
 
 INLINE uint8_t cpu_readmem_external(uint16_t addr) {
-	// TODO(nk): wait for E falling edge
 	setExtOut8();	// DEBUG
-	// drive E low
-	// BOARD_INITPINS_MCU_E_GPIO->PCOR = (1U << BOARD_INITPINS_MCU_E_PIN);
+
+	waitForElow();
+
 	// output addr | R | VMA
 	BOARD_ADDR_GPIO->PDOR = (uint32_t)addr | BOARD_READ_RW_MASK | BOARD_VMA_MASK;
 	// set D0-D7 to inputs
 	BOARD_DATA_GPIO->PDDR = BOARD_DATA_INPUT_DIR;
-	// TODO(nk): wait for E rising edge
 
-	// wait at least 160 nsec
-	delayLoop(1);
+	waitForEhigh();
 
-	// drive E high (TODO: make E an input)
-	BOARD_INITPINS_MCU_E_GPIO->PSOR = (1U << BOARD_INITPINS_MCU_E_PIN);
+	waitForElow();
 
-	// wait at least 450 nsec
-	delayLoop(4);
-
-	// TODO(nk): wait for E to go low
 	// sample data lines
 	uint8_t retval = BOARD_DATA_GPIO->PDIR & BOARD_DATA_MASK;
-
-	// drive E low (TODO: make E an input)
-	BOARD_INITPINS_MCU_E_GPIO->PCOR = (1U << BOARD_INITPINS_MCU_E_PIN);
 
 	// 20ns hold time?
 	// drive VMA low
@@ -241,21 +252,26 @@ INLINE uint8_t cpu_readmem_external(uint16_t addr) {
 }
 
 INLINE void cpu_writemem_external(uint16_t addr, uint8_t value) {
-	// drive E low
-	// BOARD_INITPINS_MCU_E_GPIO->PCOR = (1U << BOARD_INITPINS_MCU_E_PIN);
+	setExtOut8();	// DEBUG
+
+	waitForElow();
+
 	// output addr | R | VMA
 	BOARD_ADDR_GPIO->PDOR = (uint32_t)addr | BOARD_WRITE_RW_MASK | BOARD_VMA_MASK;
 	// set D0-D7 to outputs
 	BOARD_DATA_GPIO->PDDR = BOARD_DATA_OUTPUT_DIR;
 	// output data value
 	BOARD_DATA_GPIO->PDOR = (BOARD_DATA_GPIO->PDIR & 0xF000);
-	// wait at least 160nsec
-	// drive E high
-	BOARD_INITPINS_MCU_E_GPIO->PSOR = (1U << BOARD_INITPINS_MCU_E_PIN);
-	// wait 500ns
-	// drive E low
-	BOARD_INITPINS_MCU_E_GPIO->PCOR = (1U << BOARD_INITPINS_MCU_E_PIN);
-	// wait 500ns
+
+	waitForEhigh();
+
+	waitForElow();
+
+	// 20ns hold time?
+	// drive VMA low
+	BOARD_ADDR_GPIO->PDOR = (uint32_t)addr | BOARD_WRITE_RW_MASK;
+
+	clearExtOut8();	// DEBUG
 }
 
 
