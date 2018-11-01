@@ -78,10 +78,10 @@ enum {
 	ROM_BASE = 0x4000,
 	ROM_SIZE = 0xC000,	// 48K ROM
 
-	ROM_1_BASE = 0x8000,
-	ROM_1_SIZE = 0x8000,
 	ROM_2_BASE = 0x4000,
 	ROM_2_SIZE = 0x4000,
+	ROM_1_BASE = 0x8000,
+	ROM_1_SIZE = 0x8000,
 
 #else // SYSTEM 3 (BK)
 	RAM_BASE = 0x0000,// IC13/IC16 2114 RAM 256 bytes (aliased at 0200-03FF, 1100-11FF)
@@ -98,7 +98,8 @@ enum {
 #endif
 	RAM_END = RAM_BASE + RAM_SIZE - 1,
 	PIA_END = PIA_BASE + PIA_SIZE -1,
-	ROM_END = ROM_BASE + ROM_SIZE - 1
+	ROM_1_END = ROM_1_BASE + ROM_1_SIZE - 1,
+	ROM_2_END = ROM_2_BASE + ROM_2_SIZE - 1,
 };
 
 
@@ -133,7 +134,8 @@ enum MemoryRangeIndex {
 	CMOS_RAM_INDEX,
 #endif
 	PIA_INDEX,
-	ROM_INDEX,
+	ROM_1_INDEX,
+	ROM_2_INDEX,
 	NUM_MEMORY_RANGES
 };
 
@@ -168,7 +170,8 @@ extern RomRange romRanges[];
 extern MemoryRange memoryRanges[NUM_MEMORY_RANGES];
 
 constexpr MemoryRange const* findMemoryRange(uint16_t addr) {
-	if (addr > ROM_BASE) { return memoryRanges+ROM_INDEX; }
+	if (addr > ROM_1_BASE) { return memoryRanges+ROM_1_INDEX; }
+	if (addr > ROM_2_BASE) { return memoryRanges+ROM_2_INDEX; }
 	if (addr > PIA_BASE) { return memoryRanges+PIA_INDEX; }
 #if HAS_SEPARATE_RAM
 	if (addr > CMOS_RAM_BASE) { return memoryRanges+CMOS_RAM_INDEX; }
@@ -180,9 +183,17 @@ INLINE uint8_t cpu_readmem_internal(MemoryRange const * range, uint16_t addr) {
 	return *(uint8_t const *)(range->internalAddress + (addr - range->baseAddress));
 }
 
+static_assert(ROM_1_BASE > ROM_2_BASE, "roms out of order");
+
 INLINE uint8_t cpu_read_rom_internal(uint16_t addr) {
-	static MemoryRange const &rom = memoryRanges[ROM_INDEX];
-	return *(uint8_t const *)(rom.internalAddress + (addr - rom.baseAddress));
+	if (addr > ROM_1_BASE) {
+		static MemoryRange const &rom1 = memoryRanges[ROM_1_INDEX];
+		return *(uint8_t const *)(rom1.internalAddress + (addr - rom1.baseAddress));
+	}
+	/* if (addr > ROM_2_BASE) */ else {
+		static MemoryRange const &rom2 = memoryRanges[ROM_2_INDEX];
+		return *(uint8_t const *)(rom2.internalAddress + (addr - rom2.baseAddress));
+	}
 }
 
 INLINE void cpu_writemem_internal(MemoryRange const * range, uint16_t addr, uint8_t value) {
