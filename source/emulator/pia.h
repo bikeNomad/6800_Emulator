@@ -26,29 +26,23 @@ public:
 		CR_IRQ2 = 0x40,	// read-only IRQ2 flag
 		// b5..b3: CA2(CB2) control
 		CR_CAB2_OUTPUT = 0x20,	// CR b5 = 1: C[AB]2 is an output
-		CR_CAB2_INPUT = 0x00,	// CR b5 = 0: C[AB]2 is an input
 		CR_CA2_READ_STROBE_CA1_RESTORE = 4 << 3,
 		CR_CA2_READ_STROBE_E_RESTORE = 5 << 3,
 		CR_CB2_WRITE_STROBE_CB1_RESTORE = 4 << 3,
 		CR_CB2_WRITE_STROBE_E_RESTORE = 5 << 3,
 		CR_RESET_CAB2 = 6 << 3,
 		CR_SET_CAB2 = 7 << 3,
-		CR_CAB2_IRQ_DISABLE = 0 << 3,
 		CR_CAB2_IRQ_ENABLE = 1 << 3,
-		CR_CAB2_IRQ_LOW_EDGE = 0 << 3,
 		CR_CAB2_IRQ_HIGH_EDGE = 1 << 3,
-		CR_DDR_ACCESS = 0x04,
-		CR_OUTPUT_REG_ACCESS = 0x00,
-		CR_CAB1_IRQ_LOW_EDGE = 0x00,
+		CR_PR_ACCESS = 0x04,	// 0=DDR, 1=Output reg
 		CR_CAB1_IRQ_HIGH_EDGE = 0x02,
-		CR_CAB1_IRQ_DISABLE = 0x00,
 		CR_CAB1_IRQ_ENABLE = 0x01
 	};
 
 	// DDR bits: 1: output, 0: input
 	void setDataDirectionA(uint8_t outputBits, uint8_t mask) {
 		uint8_t crA = registerRead(REG_CRA);
-		registerWrite(REG_CRA, crA|CR_DDR_ACCESS);
+		registerWrite(REG_CRA, crA & ~CR_PR_ACCESS);
 
 		uint8_t ddrA = registerRead(REG_PRA_DDRA) & ~mask;	// keep non-mask bits
 		registerWrite(REG_PRA_DDRA, ddrA | outputBits);
@@ -56,7 +50,7 @@ public:
 
 	void setDataDirectionB(uint8_t outputBits, uint8_t mask) {
 		uint8_t crB = registerRead(REG_CRB);
-		registerWrite(REG_CRB, crB|CR_DDR_ACCESS);
+		registerWrite(REG_CRB, crB & ~CR_PR_ACCESS);
 
 		uint8_t ddrB = registerRead(REG_PRB_DDRB) & ~mask;	// keep non-mask bits
 		registerWrite(REG_PRB_DDRB, ddrB | outputBits);
@@ -64,14 +58,14 @@ public:
 
 	void outputA(uint8_t outputBits, uint8_t mask) {
 		uint8_t cr = registerRead(REG_CRA);
-		registerWrite(REG_CRA, cr & ~CR_DDR_ACCESS);	// select PRA
+		registerWrite(REG_CRA, cr | CR_PR_ACCESS);	// select PRA
 		uint8_t pr = registerRead(REG_PRA_DDRA);
 		registerWrite(REG_PRA_DDRA, (pr & ~mask) | outputBits);
 	}
 
 	void outputB(uint8_t outputBits, uint8_t mask) {
 		uint8_t cr = registerRead(REG_CRA);
-		registerWrite(REG_CRB, cr & ~CR_DDR_ACCESS);	// select PRA
+		registerWrite(REG_CRB, cr | CR_PR_ACCESS);	// select PRB
 		uint8_t pr = registerRead(REG_PRB_DDRB);
 		registerWrite(REG_PRB_DDRB, (pr & ~mask) | outputBits);
 	}

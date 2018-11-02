@@ -135,6 +135,9 @@ static int32_t handleExecuteCommand(p_shell_context_t context, int32_t argc, cha
 	if (*endptr || !numInstructions) {
 		return -1;
 	}
+
+    m6800_init();
+    m6800_reset();
 	m6800_execute(numInstructions);
 	return 0;
 }
@@ -152,6 +155,20 @@ static int32_t handleHexDumpCommand(p_shell_context_t context, int32_t argc, cha
 	}
 	PRINTF("\r\n");
 
+	return 0;
+}
+
+static int32_t handleWriteMemoryCommand(p_shell_context_t context, int32_t argc, char **argv) {
+	char *endptr = 0;
+	unsigned long address = strtoul(argv[1], &endptr, 0);
+	if (*endptr || address > 0xFFFFUL) { return -1; }
+	unsigned long value = strtoul(argv[2], &endptr, 0);
+	if (*endptr || value > 0xFFUL) { return -1; }
+
+	cpu_writemem16(address,  value);
+	uint8_t readback = cpu_readmem16(address);
+
+	PRINTF("Wrote %02x, read %02x\r\n", (int)value, readback);
 	return 0;
 }
 
@@ -215,6 +232,13 @@ void startShell() {
 		&handleDiagnosticLEDCommand, 1 };
 	SHELL_RegisterCommand(&ledCmdContext);
 
+	// wm addr value -- write memory
+	shell_command_context_t wmCmdContext {
+		"wm",
+		"\r\nwm addr value -- write memory\r\n",
+		&handleWriteMemoryCommand, 2 };
+	SHELL_RegisterCommand(&wmCmdContext);
+
 	SHELL_Main(&shellContext);
 }
 
@@ -240,8 +264,6 @@ int main(void) {
     PRINTF("Intern ROM CRCs:\r\n");
     crcRoms();
 
-    m6800_init();
-    m6800_reset();
 
     while (1) {
         startShell();

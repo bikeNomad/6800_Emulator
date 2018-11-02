@@ -259,7 +259,7 @@ INLINE void cpu_writemem_external(uint16_t addr, uint8_t value) {
 	// set D0-D7 to outputs
 	BOARD_DATA_GPIO->PDDR = BOARD_DATA_OUTPUT_DIR;
 	// output data value
-	BOARD_DATA_GPIO->PDOR = (BOARD_DATA_GPIO->PDIR & 0xF000);
+	BOARD_DATA_GPIO->PDOR = (BOARD_DATA_GPIO->PDIR & 0xF000) | value;
 
 	waitForEhigh();	// FTM0->CNT just overflowed to 0
 
