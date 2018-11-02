@@ -105,15 +105,14 @@ unsigned m6808_dasm(char *buffer, unsigned pc);
 
 /****************************************************************************/
 /* M6800_RDOP() is identical to M6800_RDMEM() except it is used for reading */
-/* opcodes. Since all of our ROM is internal, this makes things a lot faster. */
+/* opcodes. Since all of our ROM is internal, this makes things a lot       */
+/* faster.                                                                  */
 /****************************************************************************/
 #define M6800_RDOP(Addr) ((unsigned)cpu_readop(Addr))
 
 /****************************************************************************/
 /* M6800_RDOP_ARG() is identical to M6800_RDOP() but it's used for reading  */
-/* opcode arguments. This difference can be used to support systems that    */
-/* use different encoding mechanisms for opcodes and opcode arguments       */
-/****************************************************************************/
+/* opcode arguments.*/
 #define M6800_RDOP_ARG(Addr) ((unsigned)cpu_readop_arg(Addr))
 
 

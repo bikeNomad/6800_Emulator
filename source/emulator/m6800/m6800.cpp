@@ -68,6 +68,7 @@ typedef struct m6800_Regs
 	int 	extra_cycles;	/* cycles used for interrupts */
 	void	(* const * insn)(void);	/* instruction table */
 	const UINT8 *cycles;			/* clock cycle of instruction table */
+	unsigned wait_cycles;	/* counting total wait cycles */
 }  m6800_Regs;
 
 /* 680x registers */
@@ -470,12 +471,16 @@ int m6800_execute(int cycles)
 	m6800_ICount = cycles;
 
 	m6800.extra_cycles = 0;
+	m6800.wait_cycles = 0;
 
 	// interrupt lines are active-low
 	uint16_t lastInterruptLines = BOARD_NMI_MASK | BOARD_IRQ_MASK;
 
 	do
 	{
+		setExtOut7();	// DEBUG
+		clearExtOut7();	// DEBUG
+
 		// TODO(nk): set up IRQ lines as edge-triggered interrupts
 		uint16_t interruptLines = readInterruptLines();
 		if (interruptLines ^ lastInterruptLines) {
@@ -486,6 +491,7 @@ int m6800_execute(int cycles)
 
 		if( m6800.wai_state & M6800_WAI )
 		{
+			m6800.wait_cycles++;
 			CHECK_IRQ_LINES();
 		}
 		else
