@@ -174,11 +174,11 @@ constexpr
 INLINE
 #endif
 MemoryRange const* findMemoryRange(uint16_t addr) {
-	if (addr > ROM_1_BASE) { return memoryRanges+ROM_1_INDEX; }
-	if (addr > ROM_2_BASE) { return memoryRanges+ROM_2_INDEX; }
-	if (addr > PIA_BASE) { return memoryRanges+PIA_INDEX; }
+	if (addr >= ROM_1_BASE) { return memoryRanges+ROM_1_INDEX; }
+	if (addr >= ROM_2_BASE) { return memoryRanges+ROM_2_INDEX; }
+	if (addr >= PIA_BASE) { return memoryRanges+PIA_INDEX; }
 #if HAS_SEPARATE_RAM
-	if (addr > CMOS_RAM_BASE) { return memoryRanges+CMOS_RAM_INDEX; }
+	if (addr >= CMOS_RAM_BASE) { return memoryRanges+CMOS_RAM_INDEX; }
 #endif
 	return memoryRanges+RAM_INDEX;	// assumes RAM at lowest addresses
 }
@@ -188,7 +188,7 @@ INLINE uint8_t cpu_readmem_internal(MemoryRange const * range, uint16_t addr) {
 }
 
 INLINE uint8_t cpu_read_rom_internal(uint16_t addr) {
-	if (addr > ROM_1_BASE) {
+	if (addr >= ROM_1_BASE) {
 		static MemoryRange const *rom1 = &memoryRanges[ROM_1_INDEX];
 		return *(uint8_t const *)(rom1->internalAddress + (addr - rom1->baseAddress));
 	}

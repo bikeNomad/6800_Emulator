@@ -37,5 +37,5 @@ void copyRomsToRam() {
 	copyExternalToInternal(ROM_2_BASE, ROM_2_SIZE);
 	memoryRanges[ROM_2_INDEX].isExternal = 0;
 	copyExternalToInternal(ROM_1_BASE, ROM_1_SIZE);
-	memoryRanges[ROM_2_INDEX].isExternal = 0;
+	memoryRanges[ROM_1_INDEX].isExternal = 0;
 }
