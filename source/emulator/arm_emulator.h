@@ -218,6 +218,7 @@ static inline void waitForEalmostLow() {
 	while (FTM0->CNT < (0x10 - 3)) { /* spin */ }
 }
 
+
 INLINE uint8_t cpu_readmem_external(uint16_t addr) {
 	setExtOut8();	// DEBUG
 
@@ -246,6 +247,7 @@ INLINE uint8_t cpu_readmem_external(uint16_t addr) {
 	clearExtOut8();	// DEBUG
 	return retval;
 }
+
 
 INLINE void cpu_writemem_external(uint16_t addr, uint8_t value) {
 	setExtOut8();	// DEBUG
@@ -282,6 +284,7 @@ INLINE uint8_t cpu_readmem16(uint16_t addr) {
 	}
 }
 
+
 INLINE void cpu_writemem16(uint16_t addr, uint8_t val) {
 	MemoryRange const * range = findMemoryRange(addr);
 	if (range->internalAddress) {
@@ -290,6 +293,15 @@ INLINE void cpu_writemem16(uint16_t addr, uint8_t val) {
 		cpu_writemem_external(addr, val);
 	}
 }
+
+
+static void waitEcycles(uint32_t cycles) {
+	while (cycles-- > 0) {
+		waitForEhigh();
+		waitForEalmostLow();
+	}
+}
+
 
 // assuming that all ROM is internal...
 

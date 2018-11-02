@@ -43,12 +43,12 @@
 #include "mamedbg.h"
 
 
-#define VERBOSE 0
+#define VERBOSE 1
 
 #if VERBOSE
-#define LOG(x)	logerror x
+#define LOG(...)	logerror(__VA_ARGS__)
 #else
-#define LOG(x)
+#define LOG(...)
 #endif
 
 /* 6800 Registers */
@@ -137,7 +137,7 @@ int m6800_ICount=50000;
 	{															\
 		if( m6800.irq_state != CLEAR_LINE )		\
 		{	/* standard IRQ */									\
-			ENTER_INTERRUPT("M6800#%d take IRQ1\n",0xfff8);		\
+			ENTER_INTERRUPT("M6800 take IRQ1\r\n",0xfff8);		\
 			if( m6800.irq_callback )							\
 				(void)(*m6800.irq_callback)(M6800_IRQ_LINE);	\
 		}														\
@@ -292,8 +292,10 @@ INLINE void WM16( UINT32 Addr, PAIR *p )
 }
 
 /* IRQ enter */
-static void ENTER_INTERRUPT(const char *message,UINT16 irq_vector)
+static void ENTER_INTERRUPT(const char *message, UINT16 irq_vector)
 {
+	LOG(message);
+
 	if( m6800.wai_state & (M6800_WAI) )
 	{
 		if( m6800.wai_state & M6800_WAI )
@@ -438,17 +440,17 @@ void m6800_set_irq_line(int irqline, int state)
 	if (irqline == IRQ_LINE_NMI)
 	{
 		if (m6800.nmi_state == state) return;
-		LOG(("M6800#%d set_nmi_line %d \n", cpu_getactivecpu(), state));
+		LOG("M6800 set_nmi_line %d\r\n", state);
 		m6800.nmi_state = state;
 		if (state == CLEAR_LINE) return;
 
 		/* NMI */
-		ENTER_INTERRUPT("M6800#%d take NMI\n",0xfffc);
+		ENTER_INTERRUPT("M6800 take NMI\r\n",0xfffc);
 	}
 	else
 	{
 		if (m6800.irq_state == state) return;
-		LOG(("M6800#%d set_irq_line %d,%d\n", cpu_getactivecpu(), irqline, state));
+		LOG("M6800 set_irq_line %d,%d\r\n", irqline, state);
 		m6800.irq_state = state;
 		if (state == CLEAR_LINE) return;
 		CHECK_IRQ_LINES(); /* HJB 990417 */
