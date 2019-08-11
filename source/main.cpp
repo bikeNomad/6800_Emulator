@@ -36,6 +36,8 @@
 #include <stdlib.h>
 #include <inttypes.h>
 
+#include "SEGGER_RTT.h"
+
 #include "board.h"
 #include "peripherals.h"
 #include "pin_mux.h"
@@ -254,6 +256,10 @@ int main(void) {
     BOARD_FastClock();
     BOARD_InitBootPeripherals();	// set up E clk on EX_5
     BOARD_InitDebugConsole();  	/* Init FSL debug console. */
+
+    SEGGER_RTT_ConfigUpBuffer(0, NULL, NULL, 0, SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL);
+
+    SEGGER_RTT_WriteString(0, "SEGGER Real-Time-Terminal installed\r\n");
 
     PRINTF("Extern ROM CRCs:\r\n");
     crcRoms();

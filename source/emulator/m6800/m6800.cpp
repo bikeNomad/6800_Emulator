@@ -829,7 +829,7 @@ void m6808_set_irq_callback(int (*callback)(int irqline)) { m6800_set_irq_callba
 
 unsigned m6808_dasm(char *buffer, unsigned pc)
 {
-	return Dasm680x(6808,buffer,pc);
+	// return Dasm680x(6808,buffer,pc);
 	sprintf( buffer, "$%02X", cpu_readmem16(pc) );
 	return 1;
 }
