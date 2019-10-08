@@ -37,7 +37,6 @@ processor_version: 4.0.0
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-#define SCG_FIRC_DISABLE                                  0U  /*!< Fast IRC disabled */
 #define SCG_SOSC_DISABLE                                  0U  /*!< System OSC disabled */
 #define SCG_SPLL_DISABLE                                  0U  /*!< System PLL disabled */
 
@@ -120,14 +119,17 @@ outputs:
 - {id: LPO1KCLK.outFreq, value: 1 kHz}
 - {id: LPO_clock.outFreq, value: 128 kHz}
 - {id: PCC.PCC_FTM0_CLK.outFreq, value: 30 MHz}
+- {id: PCC.PCC_LPSPI1_CLK.outFreq, value: 84 MHz}
 - {id: PCC.PCC_LPUART0_CLK.outFreq, value: 30 MHz}
 - {id: PCC.PCC_LPUART1_CLK.outFreq, value: 30 MHz}
+- {id: PLLDIV2_CLK.outFreq, value: 84 MHz}
 - {id: SIRC_CLK.outFreq, value: 8 MHz}
 - {id: System_clock.outFreq, value: 168 MHz, locked: true, accuracy: '0.001'}
 settings:
 - {id: SCGMode, value: SPLL}
 - {id: powerMode, value: HSRUN}
 - {id: PCC.PCC_FTM0_SEL.sel, value: SCG.FIRCDIV1_CLK}
+- {id: PCC.PCC_LPSPI1_SEL.sel, value: SCG.PLLDIV2_CLK}
 - {id: PCC.PCC_LPUART0_SEL.sel, value: SCG.FIRCDIV2_CLK}
 - {id: PCC.PCC_LPUART1_SEL.sel, value: SCG.FIRCDIV2_CLK}
 - {id: SCG.DIVBUS.scale, value: '9'}
@@ -137,6 +139,7 @@ settings:
 - {id: SCG.PREDIV.scale, value: '5'}
 - {id: SCG.SCSSEL.sel, value: SCG.SPLL_DIV2_CLK}
 - {id: SCG.SPLLDIV1.scale, value: '0', locked: true}
+- {id: SCG.SPLLDIV2.scale, value: '2', locked: true}
 - {id: SCG.SPLLSRCSEL.sel, value: SCG.FIRC}
 - {id: SCG.SPLL_mul.scale, value: '28'}
 - {id: 'SCG::RCCR[DIVBUS].bitField', value: BitFieldValue}
@@ -188,7 +191,7 @@ const scg_spll_config_t g_scgSysPllConfig_BOARD_FastClock =
         .enableMode = kSCG_SysPllEnable,          /* Enable SPLL clock */
         .monitorMode = kSCG_SysPllMonitorDisable, /* Monitor disabled */
         .div1 = kSCG_AsyncClkDisable,             /* System PLL Clock Divider 1: Clock output is disabled */
-        .div2 = kSCG_AsyncClkDisable,             /* System PLL Clock Divider 2: Clock output is disabled */
+        .div2 = kSCG_AsyncClkDivBy2,              /* System PLL Clock Divider 2: divided by 2 */
         .src = kSCG_SysPllSrcFirc,                /* System PLL clock source is Fast IRC */
         .prediv = 4,                              /* Divided by 5 */
         .mult = 12,                               /* Multiply Factor is 28 */
@@ -222,6 +225,8 @@ void BOARD_FastClock(void)
     } while (curConfig.src != g_sysClkConfig_BOARD_FastClock.src);
     /* Set SystemCoreClock variable. */
     SystemCoreClock = BOARD_FASTCLOCK_CORE_CLOCK;
+    /* Set PCC LPSPI1 selection */
+    CLOCK_SetIpSrc(kCLOCK_Lpspi1, kCLOCK_IpSrcSysPllAsync);
     /* Set PCC LPUART0 selection */
     CLOCK_SetIpSrc(kCLOCK_Lpuart0, kCLOCK_IpSrcFircAsync);
     /* Set PCC LPUART1 selection */
@@ -252,8 +257,7 @@ settings:
 - {id: SCG.DIVCORE.scale, value: '2'}
 - {id: SCG.DIVSLOW.scale, value: '5'}
 - {id: SCG.SCSSEL.sel, value: SCG.SIRC}
-- {id: 'SCG::FIRCCFG[RANGE].bitField', value: BitFieldValue}
-- {id: SCG_FIRCCSR_FIRCEN_CFG, value: Disabled}
+- {id: SCG_SOSCCSR_SOSCEN_CFG, value: Enabled}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 /* clang-format on */
 
@@ -270,7 +274,7 @@ const scg_sys_clk_config_t g_sysClkConfig_BOARD_SlowClock =
 const scg_sosc_config_t g_scgSysOscConfig_BOARD_SlowClock =
     {
         .freq = 0U,                               /* System Oscillator frequency: 0Hz */
-        .enableMode = SCG_SOSC_DISABLE,           /* System OSC disabled */
+        .enableMode = kSCG_SysOscEnable,          /* Enable System OSC clock */
         .monitorMode = kSCG_SysOscMonitorDisable, /* Monitor disabled */
         .div1 = kSCG_AsyncClkDisable,             /* System OSC Clock Divider 1: Clock output is disabled */
         .div2 = kSCG_AsyncClkDisable,             /* System OSC Clock Divider 2: Clock output is disabled */
@@ -285,7 +289,7 @@ const scg_sirc_config_t g_scgSircConfig_BOARD_SlowClock =
     };
 const scg_firc_config_t g_scgFircConfig_BOARD_SlowClock =
     {
-        .enableMode = SCG_FIRC_DISABLE,           /* Fast IRC disabled */
+        .enableMode = kSCG_FircEnable,            /* Enable FIRC clock */
         .div1 = kSCG_AsyncClkDisable,             /* Fast IRC Clock Divider 1: Clock output is disabled */
         .div2 = kSCG_AsyncClkDisable,             /* Fast IRC Clock Divider 2: Clock output is disabled */
         .range = kSCG_FircRange48M,               /* Fast IRC is trimmed to 48MHz */
@@ -308,6 +312,8 @@ void BOARD_SlowClock(void)
 {
     scg_sys_clk_config_t curConfig;
 
+    /* Init FIRC. */
+    CLOCK_CONFIG_FircSafeConfig(&g_scgFircConfig_BOARD_SlowClock);
     /* Init SIRC. */
     CLOCK_InitSirc(&g_scgSircConfig_BOARD_SlowClock);
     /* Set SCG to SIRC mode. */

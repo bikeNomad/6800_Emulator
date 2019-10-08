@@ -499,7 +499,6 @@ int m6800_execute(int cycles)
 		else
 		{
 			pPPC = pPC;
-			CALL_MAME_DEBUG;
 			ireg=M_RDOP(PCD);
 			PC++;
 

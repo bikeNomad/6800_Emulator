@@ -32,8 +32,8 @@
  */
 
 /* TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
-!!GlobalInfo
-product: Peripherals v1.0
+ !!GlobalInfo
+ product: Peripherals v1.0
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 
 /*******************************************************************************
@@ -41,6 +41,7 @@ product: Peripherals v1.0
  ******************************************************************************/
 #include "peripherals.h"
 #include "fsl_ftm.h"
+#include "fsl_lpspi.h"
 
 /*******************************************************************************
  * BOARD_InitBootPeripherals function
@@ -50,20 +51,41 @@ product: Peripherals v1.0
 // TODO(nk): clock source is not being set to FIRCDIV1(CLKS=2); it's at CLKS=1
 #define FTM_SOURCE_CLOCK (CLOCK_GetFreq(kCLOCK_ScgFircAsyncDiv1Clk))
 
-void BOARD_InitBootPeripherals(void)
-{
+void BOARD_InitBootPeripherals(void) {
+	// Initialize FTM0 to provide the E clock
 	ftm_config_t config;
 	FTM_GetDefaultConfig(&config);
 	config.prescale = kFTM_Prescale_Divide_1;
 	FTM_Init(FTM0, &config);
 
-	ftm_chnl_pwm_signal_param_t ftmParam = {
-			.chnlNumber = 0,
-			.dutyCyclePercent = 50,
-			.firstEdgeDelayPercent = 0,
-			.level = kFTM_HighTrue
-	};
-	FTM_SetupPwm(FTM0, &ftmParam, 1, kFTM_EdgeAlignedPwm, 894886U, FTM_SOURCE_CLOCK);	// approx. /33
+	ftm_chnl_pwm_signal_param_t ftmParam = { .chnlNumber = 0,
+			.dutyCyclePercent = 50, .firstEdgeDelayPercent = 0, .level =
+					kFTM_HighTrue };
+	FTM_SetupPwm(FTM0, &ftmParam, 1, kFTM_EdgeAlignedPwm, 894886U,
+			FTM_SOURCE_CLOCK);	// approx. /33
 
-    FTM_StartTimer(FTM0, kFTM_FixedClock);	// use FIRCDIV1
+	FTM_StartTimer(FTM0, kFTM_FixedClock);	// use FIRCDIV1
+
+	// Initialize LPSPI1 for 16-bit transfers (for address debugging)
+	lpspi_master_config_t lpspiConfig;
+
+	lpspiConfig.baudRate = LPSPI_BAUDRATE;
+	lpspiConfig.bitsPerFrame = 16;
+	lpspiConfig.cpol = kLPSPI_ClockPolarityActiveHigh;
+	lpspiConfig.cpha = kLPSPI_ClockPhaseFirstEdge;
+	lpspiConfig.direction = kLPSPI_MsbFirst;
+
+	lpspiConfig.pcsToSckDelayInNanoSec = 1000000000 / lpspiConfig.baudRate;
+	lpspiConfig.lastSckToPcsDelayInNanoSec = 1000000000 / lpspiConfig.baudRate;
+	lpspiConfig.betweenTransferDelayInNanoSec = 1000000000
+			/ lpspiConfig.baudRate;
+
+	lpspiConfig.whichPcs = LPSPI_MASTER_PCS_FOR_INIT | kLPSPI_MasterByteSwap;
+	lpspiConfig.pcsActiveHighOrLow = kLPSPI_PcsActiveLow;
+
+	lpspiConfig.pinCfg = kLPSPI_SdiInSdoOut;
+	lpspiConfig.dataOutConfig = kLpspiDataOutRetained;
+
+	LPSPI_MasterInit(LPSPI_MASTER_BASEADDR, &lpspiConfig,
+			LPSPI_MASTER_CLOCK_FREQ);
 }

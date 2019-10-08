@@ -37,6 +37,15 @@
 #if defined(__cplusplus)
 extern "C" {
 #endif /*_cplusplus. */
+
+#include "fsl_lpspi.h"
+
+#define LPSPI_BAUDRATE 16000000
+#define LPSPI_MASTER_BASEADDR LPSPI1
+#define LPSPI_MASTER_PCS_FOR_INIT kLPSPI_Pcs3
+#define LPSPI_MASTER_CLOCK_FREQ (CLOCK_GetIpFreq(kCLOCK_Lpspi1))
+
+
 /*******************************************************************************
  * BOARD_InitBootPeripherals function
  ******************************************************************************/
@@ -44,6 +53,16 @@ void BOARD_InitBootPeripherals(void);
 
 #if defined(__cplusplus)
 }
+
+static inline void sendAddressToSPI(uint16_t *addr) {
+	// TODO(nk): may not need the byte swap
+	static lpspi_transfer_t xfer = { nullptr, nullptr, 2, kLPSPI_MasterPcs3 | kLPSPI_MasterByteSwap };
+	xfer.txData = reinterpret_cast<uint8_t*>(addr);
+	LPSPI_MasterTransferBlocking(LPSPI_MASTER_BASEADDR, &xfer);
+}
+
+#define DEBUG_ADDRESS_OUT(paddr) sendAddressToSPI(paddr)
+
 #endif /*_cplusplus. */
 
 #endif /* _PERIPHERALS_H_ */

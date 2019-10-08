@@ -300,32 +300,11 @@ void BOARD_InitBootPins(void);
 #define BOARD_INITPINS_MCU_RESET_PIN 9U     /*!<@brief PORTA pin index: 9 */
                                             /* @} */
 
-/*! @name PORTB14 (number 66), LED_1
-  @{ */
-#define BOARD_INITPINS_LED_1_GPIO GPIOB /*!<@brief GPIO device name: GPIOB */
-#define BOARD_INITPINS_LED_1_PORT PORTB /*!<@brief PORT device name: PORTB */
-#define BOARD_INITPINS_LED_1_PIN 14U    /*!<@brief PORTB pin index: 14 */
-                                        /* @} */
-
 /*! @name PORTB15 (number 65), LED_2
   @{ */
 #define BOARD_INITPINS_LED_2_GPIO GPIOB /*!<@brief GPIO device name: GPIOB */
 #define BOARD_INITPINS_LED_2_PORT PORTB /*!<@brief PORT device name: PORTB */
 #define BOARD_INITPINS_LED_2_PIN 15U    /*!<@brief PORTB pin index: 15 */
-                                        /* @} */
-
-/*! @name PORTB17 (number 63), LED_4
-  @{ */
-#define BOARD_INITPINS_LED_4_GPIO GPIOB /*!<@brief GPIO device name: GPIOB */
-#define BOARD_INITPINS_LED_4_PORT PORTB /*!<@brief PORT device name: PORTB */
-#define BOARD_INITPINS_LED_4_PIN 17U    /*!<@brief PORTB pin index: 17 */
-                                        /* @} */
-
-/*! @name PORTB16 (number 64), LED_3
-  @{ */
-#define BOARD_INITPINS_LED_3_GPIO GPIOB /*!<@brief GPIO device name: GPIOB */
-#define BOARD_INITPINS_LED_3_PORT PORTB /*!<@brief PORT device name: PORTB */
-#define BOARD_INITPINS_LED_3_PIN 16U    /*!<@brief PORTB pin index: 16 */
                                         /* @} */
 
 /*! @name PORTC1 (number 39), EX_4

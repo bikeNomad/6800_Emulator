@@ -146,6 +146,7 @@ INLINE void clearExtOut ## num () { BOARD_INITPINS_EX_ ## num ## _GPIO->PCOR = (
 DEFINE_EXT_FUNCTIONS(8)
 DEFINE_EXT_FUNCTIONS(7)
 DEFINE_EXT_FUNCTIONS(6)
+// EXT OUT 5 is connected to MCU E clock pin
 DEFINE_EXT_FUNCTIONS(4)
 DEFINE_EXT_FUNCTIONS(3)
 DEFINE_EXT_FUNCTIONS(2)
@@ -157,16 +158,21 @@ INLINE void clearLED ## num() { BOARD_INITPINS_LED_ ## num ## _GPIO->PCOR = (1U 
 INLINE void ledOn ## num() { clearLED ## num(); } \
 INLINE void ledOff ## num() { setLED ## num(); } \
 
-DEFINE_LED_FUNCTIONS(4)
-DEFINE_LED_FUNCTIONS(3)
+// TODO(nk): LEDs have become SPI pins for debugging.
+// LED_1 (PTB14): SCK
+// LED_3 (PTB16): MOSI
+// LED_4 (PTB17): CS3
+// DEFINE_LED_FUNCTIONS(4)
+// DEFINE_LED_FUNCTIONS(3)
 DEFINE_LED_FUNCTIONS(2)
-DEFINE_LED_FUNCTIONS(1)
+// DEFINE_LED_FUNCTIONS(1)
 
 extern RomRange romRanges[];
 
 extern MemoryRange memoryRanges[NUM_MEMORY_RANGES];
 
 static_assert(ROM_1_BASE > ROM_2_BASE, "roms out of order");
+static_assert(ROM_2_BASE > PIA_BASE, "PIA address out of order");
 
 #if __cplusplus
 constexpr
@@ -265,6 +271,7 @@ INLINE void cpu_writemem_external(uint16_t addr, uint8_t value) {
 
 	waitForEhigh();	// FTM0->CNT just overflowed to 0
 
+	// TODO(nk): wait for almost low? check setup times...
 	waitForElow();
 
 	// 20ns hold time?
@@ -305,7 +312,10 @@ static void waitEcycles(uint32_t cycles) {
 
 // assuming that all ROM is internal...
 
-INLINE uint8_t cpu_readop(uint16_t addr) { return cpu_read_rom_internal(addr); }
+INLINE uint8_t cpu_readop(uint16_t addr) {
+	DEBUG_ADDRESS_OUT(&addr);
+	return cpu_read_rom_internal(addr);
+}
 
 INLINE uint8_t cpu_readop_arg(uint16_t addr) { return cpu_read_rom_internal(addr); }
 
